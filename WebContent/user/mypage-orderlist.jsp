@@ -32,10 +32,26 @@
 						<table class="table table-borered">
 							<thead>
 								<tr>
-									<th></th>
-									
+									<th>상품명</th>
+									<th>상품가격</th>
+									<th>구매수량</th>
+									<th>구매일</th>
 								</tr>
 							</thead>
+							<tbody>
+								<tr>
+									<td>상품명</td>
+									<td>상품가격</td>
+									<td>구매수량</td>
+									<td>구매일</td>
+								</tr>
+								<tr>
+									<td>상품명</td>
+									<td>상품가격</td>
+									<td>구매수량</td>
+									<td>구매일</td>
+								</tr>
+							</tbody>
 						</table>
 					</div>
 					<!-- mypage-orderlist content end -->

@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col-4"></div>
 			<div class="col-4 brand-logo text-center">
-				<a href="#"><img src="${pageContext.request.contextPath }/image/baskin-logo.png" alt="" /></a>
+				<a href="${pageContext.request.contextPath }/home.jsp"><img src="${pageContext.request.contextPath }/image/baskin-logo.png" alt="" /></a>
 			</div>
 			<div class="col-4 text-center">
 				<a href="#" class="search_icon"><i class="fas fa-search fa-2x"></i></a>

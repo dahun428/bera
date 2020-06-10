@@ -26,10 +26,7 @@
 				</div>
 				<div class="custom-content-box">
 					<hr />
-					<div class="title text-center">
-						<h5>베스킨라빈스 회원 여러분 감사합니다.</h5>
-						<p>홈페이지에서 다양한 혜택을 만나보세요</p>
-					</div>
+					<%@ include file="mypage-navi.jsp" %>
 					<!-- modify form start -->
 					<div class="custom-box-wrap">
 						<div class="custom-box">

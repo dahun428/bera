@@ -4,18 +4,21 @@
 	<div class="container">
 		<div class="row custom-nav">
 			<div class="col-1">
-				<a href="../user/loginform.jsp" class="nav-link">LOGIN</a>
+				<a href="${pageContext.request.contextPath }/user/loginform.jsp" class="nav-link">LOGIN</a>
 			</div>
 			<div class="col-1">
-				<a href="../user/joinform.jsp" class="nav-link">JOIN</a>
+				<a href="${pageContext.request.contextPath }/user/joinform.jsp" class="nav-link">JOIN</a>
 			</div>
-			<div class="col-10">
+			<div class="col-1">
+				<a href="${pageContext.request.contextPath }/user/mypage.jsp" class="nav-link">MYPAGE</a>
+			</div>
+			<div class="col-9">
 				<ul class="nav justify-content-end" id="custom-nav">
 					<li class="nav-item"><a class="nav-link active" href="#">FLAVOR
 							OF MONTH</a>
 						<div class="nav-sub">
 							<div class="nav-sub-menu">
-								<img src="../image/event_ice.jpg" alt="" />
+								<img src="${pageContext.request.contextPath }/image/event_ice.jpg" alt="" />
 							</div>
 						</div></li>
 					<li class="nav-item"><a class="nav-link" href="#">MENU</a>

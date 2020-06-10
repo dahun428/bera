@@ -27,6 +27,11 @@
 				<div class="custom-content-box">
 					<hr />
 					<%@ include file="mypage-navi.jsp"%>
+					<div class="row content-header text-center">
+						<div class="col-12">
+							<h2>안녕하세요 홍길동님</h2>
+						</div>
+					</div>
 					<!-- mypage-point content start -->
 					<div class="row content-header">
 						<div class="col-6 custom-border-right">
