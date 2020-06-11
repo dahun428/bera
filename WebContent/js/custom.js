@@ -10,5 +10,29 @@ $(document).ready(function(){
 			$('.nav-sub').slideUp(400);
 		}
 	});
+	var count = 1;
+	$('#count-plus').click(function(){
+		var totalPrice = 0;
+		var price = $('#product-price').text();
+		
+		count++;
+		$('#count').val(count);
+		
+		totalPrice = count * price;
+		$('#product-total-price').text(totalPrice);
+	});
+	$('#count-minus').click(function(){
+		var totalPrice = 0;
+		var price = $('#product-price').text();
+
+		if(!(count == 0)){
+			count--;
+			$('#count').val(count);
+		}
+
+		totalPrice = count * price;
+		$('#product-total-price').text(totalPrice);
+		
+	});
 });
 

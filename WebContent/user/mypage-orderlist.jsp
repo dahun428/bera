@@ -14,6 +14,9 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
+		<%
+			String position = "order";
+		%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
@@ -26,8 +29,14 @@
 				</div>
 				<div class="custom-content-box">
 					<hr />
+					<%
+						String myPagePosition = "myOrderlistPage";
+					%>
+					<!-- mypage-nav start -->
 					<%@ include file="mypage-navi.jsp"%>
+					<!-- mypage-nav end -->
 					<!-- mypage-orderlist content start -->
+					<!-- 서버에서 주문정보 불러와서 테이블 형태로 화면에 나타내기 -->
 					<div class="row content-header">
 						<table class="table table-borered">
 							<thead>

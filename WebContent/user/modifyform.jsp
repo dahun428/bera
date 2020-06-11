@@ -14,6 +14,9 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
+		<%
+			String position = "modify";
+		%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
@@ -26,7 +29,12 @@
 				</div>
 				<div class="custom-content-box">
 					<hr />
+					<%
+						String myPagePosition = "modifyPage";
+					%>
+					<!-- mypage-nav start -->
 					<%@ include file="mypage-navi.jsp" %>
+					<!-- mypage-nav end -->
 					<!-- modify form start -->
 					<div class="custom-box-wrap">
 						<div class="custom-box">
@@ -37,7 +45,7 @@
 											<td>이름</td>
 											<td>
 												<div class="form-group">
-													<input name="name" type="text" class="form-control" />
+													<input name="name" type="text" class="form-control" disabled="disabled"/>
 												</div>
 											</td>
 										</tr>
@@ -45,7 +53,7 @@
 											<td>아이디</td>
 											<td>
 												<div class="form-group">
-													<input name="id" type="text" class="form-control" />
+													<input name="id" type="text" class="form-control" disabled="disabled" />
 												</div>
 											</td>
 										</tr>
@@ -81,7 +89,6 @@
 												</div>
 											</td>
 										</tr>
-									
 									</tbody>
 								</table>
 							</form>

@@ -14,6 +14,9 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
+		<%
+			String position = "join";
+		%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">

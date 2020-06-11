@@ -14,6 +14,9 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
+		<%
+			String position="mypage";
+		%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
@@ -26,27 +29,89 @@
 				</div>
 				<div class="custom-content-box">
 					<hr />
+					<%
+						String myPagePosition = "myCartPage";
+					%>
 					<%@ include file="mypage-navi.jsp"%>
 					<div class="row content-header text-center">
-						<div class="col-12">
+						<!-- mypoint content start -->
+						<div class="col-9 custom-border-right">
 							<h2>안녕하세요 홍길동님</h2>
-						</div>
-					</div>
-					<!-- mypage-point content start -->
-					<div class="row content-header">
-						<div class="col-6 custom-border-right">
-							<h5>해피포인트는 어떻게 발급받나요?</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Voluptas quam.</p>
 						</div>
 						<div class="col-3">
 							<h5>사용가능 총 포인트</h5>
+							<span class="text-primary">1000p</span>
 						</div>
-						<div class="col-3">
-							<h5 class="text-primary">1000p</h5>
-						</div>
+						<!-- mypoint coatent end -->
 					</div>
-					<!-- mypage-point content end -->
+					<div class="row content-header">
+						<!-- mypage-cart content start -->
+						<div class="col-12">
+							<h4>나의 장바구니</h4>
+							<hr />
+							<div class="row orderlist">
+								<table class="table table-bordered text-center">
+									<thead>
+										<tr>
+											<th scope="row">
+												<input type="checkbox"  />
+											</th>
+											<th scope="row" colspan="2">상품</th>
+											<th scope="row">가격(원)</th>
+											<th scope="row">구매 시 적립포인트</th>
+											<th scope="row">구매하기</th>
+										</tr>
+									</thead>
+									<!-- 서버에서 장바구니 구현하기 -->
+									<tbody>
+										<tr>
+											<td>
+												<input type="checkbox" />
+											</td>
+											<td>
+												<img src="../image/product_sample_img.jpg" alt="" />
+											</td>
+											<td>
+												<p>아몬드 봉봉 블라스트</p>
+											</td>
+											<td>
+												<p>5,100</p>
+											</td>
+											<td>
+												<p>0p</p>
+											</td>
+											<td>
+												<button type="button" class="btn btn-primary">구매하기</button>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<input type="checkbox" />
+											</td>
+											<td>
+												<img src="../image/product_sample_img.jpg" alt="" />
+											</td>
+											<td>
+												<p>아몬드 봉봉 블라스트</p>
+											</td>
+											<td>
+												<p>5,100</p>
+											</td>
+											<td>
+												<p>0p</p>
+											</td>
+											<td>
+												<button type="button" class="btn btn-primary">구매하기</button>
+											</td>
+										</tr>
+									<!--  -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- mypage-cart content end -->
+					</div>
+
 				</div>
 			</div>
 		</div>

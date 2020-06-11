@@ -14,31 +14,31 @@
 			</div>
 			<div class="col-9">
 				<ul class="nav justify-content-end" id="custom-nav">
-					<li class="nav-item"><a class="nav-link active" href="#">FLAVOR
+					<li class="nav-item"><a class="nav-link" href="#">FLAVOR
 							OF MONTH</a>
 						<div class="nav-sub">
 							<div class="nav-sub-menu">
 								<img src="${pageContext.request.contextPath }/image/event_ice.jpg" alt="" />
 							</div>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">MENU</a>
+					<li class="nav-item"><a class="nav-link <%="menu".equals(position) ? "active" : "" %>" href="${pageContext.request.contextPath }/product/list.jsp">MENU</a>
 						<div class="nav-sub">
 							<ul class="nav-sub-menu">
-								<li><a href="#">아이스크림</a></li>
+								<li><a href="${pageContext.request.contextPath }/product/list_icecream.jsp">아이스크림</a></li>
 								<li><a href="#">아이스크림 케이크</a></li>
 								<li><a href="#">음료</a></li>
 								<li><a href="#">커피</a></li>
 								<li><a href="#">디저트</a></li>
 							</ul>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">EVENT</a>
+					<li class="nav-item"><a class="nav-link <%="myCartPage".equals(position) ? "active" : "" %>" href="#">EVENT</a>
 						<div class="nav-sub">
 							<ul class="nav-sub-menu">
 								<li><a href="#">진행중인 이벤트</a></li>
 								<li><a href="#">당첨자발표</a></li>
 							</ul>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">ABOUT</a>
+					<li class="nav-item"><a class="nav-link <%="myCartPage".equals(position) ? "active" : "" %>" href="#">ABOUT</a>
 						<div class="nav-sub">
 							<ul class="nav-sub-menu">
 								<li><a href="#">고객센터</a></li>

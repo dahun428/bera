@@ -14,7 +14,7 @@
 		<div class="row text-center">
 			<div class="col-4"></div>
 			<div class="col-4">
-				<a href="#"> <img src="image/footer_logo.jpg" alt="" />
+				<a href="#"> <img src="../image/footer_logo.jpg" alt="" />
 				</a>
 
 			</div>

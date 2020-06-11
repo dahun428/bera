@@ -14,6 +14,9 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
+		<%
+			String position = "login";
+		%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
@@ -37,11 +40,11 @@
 								<div class="row">
 									<div class="col-8">
 										<div class="form-group">
-											<input type="text" class="form-control"
+											<input type="text" name="id" class="form-control"
 												placeholder="아이디를 입력하세요" />
 										</div>
 										<div class="form-group">
-											<input type="password" class="form-control"
+											<input type="password" name="pwd" class="form-control"
 												placeholder="비밀번호를 입력하세요" />
 										</div>
 									</div>

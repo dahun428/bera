@@ -5,16 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/custom.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
-<style>
-
-</style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script
@@ -27,20 +22,23 @@
 	<div class="wrapper">
 		<!-- header start -->
 		<div class="header">
-			<%@ include file="/common/header.jsp" %>
+			<%@ include file="/common/header.jsp"%>
 		</div>
 		<!-- header end -->
 
 		<div class="navi">
-		<!-- navi start -->
-			<%@ include file="/common/navi.jsp" %>
-		<!-- navi end -->
+		<%
+			String position = "home";
+		%>
+			<!-- navi start -->
+			<%@ include file="/common/navi.jsp"%>
+			<!-- navi end -->
 		</div>
 		<div class="body">
-			<%@ include file="homebody.jsp" %>
+			<%@ include file="homebody.jsp"%>
 		</div>
 		<div class="footer">
-			<%@ include file="/common/footer.jsp" %>
+			<%@ include file="/common/footer.jsp"%>
 		</div>
 	</div>
 </body>
