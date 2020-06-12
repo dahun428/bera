@@ -4,47 +4,59 @@
 	<div class="container">
 		<div class="row custom-nav">
 			<div class="col-1">
-				<a href="${pageContext.request.contextPath }/user/loginform.jsp" class="nav-link">LOGIN</a>
+				<a href="${pageContext.request.contextPath }/user/loginform.jsp"
+					class="nav-link">LOGIN</a>
 			</div>
 			<div class="col-1">
-				<a href="${pageContext.request.contextPath }/user/joinform.jsp" class="nav-link">JOIN</a>
+				<a href="${pageContext.request.contextPath }/user/joinform.jsp"
+					class="nav-link">JOIN</a>
 			</div>
 			<div class="col-1">
-				<a href="${pageContext.request.contextPath }/user/mypage-point.jsp" class="nav-link">MYPAGE</a>
+				<a href="${pageContext.request.contextPath }/user/mypage-point.jsp"
+					class="nav-link">MYPAGE</a>
 			</div>
 			<div class="col-9">
 				<ul class="nav justify-content-end" id="custom-nav">
-					<li class="nav-item"><a class="nav-link" href="#">FLAVOR
+					<li class="nav-item"><a class="nav-link <%="flavor".equals(position) ? "active" : "" %>"" href="${pageContext.request.contextPath }/event/flavorOftheMonth.jsp">FLAVOR
 							OF MONTH</a>
 						<div class="nav-sub">
 							<div class="nav-sub-menu">
-								<img src="${pageContext.request.contextPath }/image/event_ice.jpg" alt="" />
+								<a href="${pageContext.request.contextPath }/event/flavorOftheMonth.jsp">
+								<img
+									src="${pageContext.request.contextPath }/image/event_ice.jpg"
+									alt="" />
+								</a>
+							
 							</div>
 						</div></li>
-					<li class="nav-item"><a class="nav-link <%="menu".equals(position) ? "active" : "" %>" href="${pageContext.request.contextPath }/product/main.jsp">MENU</a>
+					<li class="nav-item"><a
+						class="nav-link <%="menu".equals(position) ? "active" : "" %>"
+						href="${pageContext.request.contextPath }/product/main.jsp">MENU</a>
 						<div class="nav-sub">
 							<ul class="nav-sub-menu">
-								<li><a href="${pageContext.request.contextPath }/product/list.jsp">아이스크림</a></li>
-								<li><a href="#">아이스크림 케이크</a></li>
-								<li><a href="#">음료</a></li>
-								<li><a href="#">커피</a></li>
-								<li><a href="#">디저트</a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/product/list.jsp">아이스크림</a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/product/list.jsp">아이스크림
+										케이크</a></li>
 							</ul>
 						</div></li>
-					<li class="nav-item"><a class="nav-link <%="myCartPage".equals(position) ? "active" : "" %>" href="#">EVENT</a>
+					<li class="nav-item"><a
+						class="nav-link <%="event".equals(position) ? "active" : "" %>"
+						href="${pageContext.request.contextPath }/event/list.jsp">EVENT</a>
 						<div class="nav-sub">
 							<ul class="nav-sub-menu">
-								<li><a href="#">진행중인 이벤트</a></li>
-								<li><a href="#">당첨자발표</a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/event/list.jsp">진행중인
+										이벤트</a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/event/end.jsp">당첨자발표</a></li>
 							</ul>
 						</div></li>
-					<li class="nav-item"><a class="nav-link <%="myCartPage".equals(position) ? "active" : "" %>" href="#">ABOUT</a>
-						<div class="nav-sub">
-							<ul class="nav-sub-menu">
-								<li><a href="#">고객센터</a></li>
-								<li><a href="#">공지사항</a></li>
-							</ul>
-						</div></li>
+					<li class="nav-item"><a
+						class="nav-link <%="notice".equals(position) ? "active" : "" %>"
+						href="${pageContext.request.contextPath }/notice/list.jsp">공지사항</a>
+					</li>
 				</ul>
 			</div>
 		</div>

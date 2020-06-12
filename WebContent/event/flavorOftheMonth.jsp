@@ -14,13 +14,13 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
-		<%
-			String position = "join";
-		%>
+			<%
+			String position = "flavor";
+			%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
-			<h1>리뷰 수정 페이지 입니다.</h1>
+			<h1>이번달 행사 페이지 입니다.</h1>
 		</div>
 		<div class="footer">
 			<%@ include file="/common/footer.jsp"%>

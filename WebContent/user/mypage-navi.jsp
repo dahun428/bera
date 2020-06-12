@@ -7,7 +7,8 @@
 			<li class="nav-item"><a href="mypage-cart.jsp" class="nav-link <%="myCartPage".equals(myPagePosition) ? "active" : "" %>">장바구니</a></li>
 			<li class="nav-item"><a href="mypage-orderlist.jsp" class="nav-link <%="myOrderlist".equals(myPagePosition) ? "active" : "" %>">주문내역</a></li>
 			<li class="nav-item"><a href="modifyform.jsp" class="nav-link <%="modifyPage".equals(myPagePosition) ? "active" : "" %>">회원정보수정</a></li>
-			<li class="nav-item"><a href="#" class="nav-link">회원탈퇴</a></li>
+			<li class="nav-item"><a href="mypage-deleteform.jsp" class="nav-link <%="deletePage".equals(myPagePosition) ? "active" : "" %>">회원탈퇴</a></li>
+			
 		</ul>
 	</div>
 </div>
