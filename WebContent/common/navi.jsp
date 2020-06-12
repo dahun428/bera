@@ -10,7 +10,7 @@
 				<a href="${pageContext.request.contextPath }/user/joinform.jsp" class="nav-link">JOIN</a>
 			</div>
 			<div class="col-1">
-				<a href="${pageContext.request.contextPath }/user/mypage.jsp" class="nav-link">MYPAGE</a>
+				<a href="${pageContext.request.contextPath }/user/mypage-point.jsp" class="nav-link">MYPAGE</a>
 			</div>
 			<div class="col-9">
 				<ul class="nav justify-content-end" id="custom-nav">
@@ -21,10 +21,10 @@
 								<img src="${pageContext.request.contextPath }/image/event_ice.jpg" alt="" />
 							</div>
 						</div></li>
-					<li class="nav-item"><a class="nav-link <%="menu".equals(position) ? "active" : "" %>" href="${pageContext.request.contextPath }/product/list.jsp">MENU</a>
+					<li class="nav-item"><a class="nav-link <%="menu".equals(position) ? "active" : "" %>" href="${pageContext.request.contextPath }/product/main.jsp">MENU</a>
 						<div class="nav-sub">
 							<ul class="nav-sub-menu">
-								<li><a href="${pageContext.request.contextPath }/product/list_icecream.jsp">아이스크림</a></li>
+								<li><a href="${pageContext.request.contextPath }/product/list.jsp">아이스크림</a></li>
 								<li><a href="#">아이스크림 케이크</a></li>
 								<li><a href="#">음료</a></li>
 								<li><a href="#">커피</a></li>

@@ -14,9 +14,9 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
-		<%
-			String position = "modify";
-		%>
+			<%
+				String position = "modify";
+			%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
@@ -33,74 +33,85 @@
 						String myPagePosition = "modifyPage";
 					%>
 					<!-- mypage-nav start -->
-					<%@ include file="mypage-navi.jsp" %>
+					<%@ include file="mypage-navi.jsp"%>
 					<!-- mypage-nav end -->
 					<!-- modify form start -->
-					<div class="custom-box-wrap">
-						<div class="custom-box">
-							<form action="">
-								<table class="table table-bordered">
-									<tbody>
-										<tr>
-											<td>이름</td>
-											<td>
-												<div class="form-group">
-													<input name="name" type="text" class="form-control" disabled="disabled"/>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>아이디</td>
-											<td>
-												<div class="form-group">
-													<input name="id" type="text" class="form-control" disabled="disabled" />
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>비밀번호</td>
-											<td>
-												<div class="form-group">
-													<input name="pwd" type="text" class="form-control" />
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>비밀번호 확인</td>
-											<td>
-												<div class="form-group">
-													<input name="pwd-chk" type="text" class="form-control" />
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>전화번호</td>
-											<td>
-												<div class="form-group">
-													<input name="tel" type="text" class="form-control" />
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>이메일</td>
-											<td>
-												<div class="form-group">
-													<input name="email" type="text" class="form-control" />
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</form>
-							<div class="form-btn text-right">
-								<button class="btn btn-secondary">돌아가기</button>
-								<button class="btn btn-primary">수정하기</button>
+					<div class="row content-header text-center">
+						<div class="col-12">
+							<h2>회원 정보 수정 페이지 입니다.</h2>
+						</div>
+					</div>
+					<div class="row content-header">
+						<div class="col-12">
+							<h4>나의 회원 정보</h4>
+							<hr />
+							<div class="my-info-modify">
+								<form action="">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td>이름</td>
+												<td>
+													<div class="form-group">
+														<input name="name" type="text" class="form-control"
+															disabled="disabled" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>아이디</td>
+												<td>
+													<div class="form-group">
+														<input name="id" type="text" class="form-control"
+															disabled="disabled" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>비밀번호</td>
+												<td>
+													<div class="form-group">
+														<input name="pwd" type="text" class="form-control" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>비밀번호 확인</td>
+												<td>
+													<div class="form-group">
+														<input name="pwd-chk" type="text" class="form-control" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>전화번호</td>
+												<td>
+													<div class="form-group">
+														<input name="tel" type="text" class="form-control" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>이메일</td>
+												<td>
+													<div class="form-group">
+														<input name="email" type="text" class="form-control" />
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+								<div class="form-btn text-right">
+									<button class="btn btn-secondary">돌아가기</button>
+									<button class="btn btn-primary">수정하기</button>
+								</div>
 							</div>
 						</div>
 					</div>
-					<!-- modify form end -->
 				</div>
 			</div>
+			<!-- modify form end -->
 		</div>
 		<div class="footer">
 			<%@ include file="/common/footer.jsp"%>
