@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="mypage-nav">
+	<div class="col-12">
+		<ul class="nav nav-tabs nav-justified">
+			<li class="nav-item"><a href="mypage-point.jsp" class="nav-link <%="myPoint".equals(myPagePosition) ? "active" : "" %>">포인트</a></li>
+			<li class="nav-item"><a href="mypage-cart.jsp" class="nav-link <%="myCartPage".equals(myPagePosition) ? "active" : "" %>">장바구니</a></li>
+			<li class="nav-item"><a href="mypage-orderlist.jsp" class="nav-link <%="myOrderlist".equals(myPagePosition) ? "active" : "" %>">주문내역</a></li>
+			<li class="nav-item"><a href="modifyform.jsp" class="nav-link <%="modifyPage".equals(myPagePosition) ? "active" : "" %>">회원정보수정</a></li>
+			<li class="nav-item"><a href="mypage-deleteform.jsp" class="nav-link <%="deletePage".equals(myPagePosition) ? "active" : "" %>">회원탈퇴</a></li>
+			
+		</ul>
+	</div>
+</div>

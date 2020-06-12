@@ -1,0 +1,26 @@
+package com.br.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.br.utils.ConnectionUtil;
+import com.br.utils.QueryUtil;
+import com.br.vo.User;
+
+public class UserDao {
+
+	public void insertUser(/*User user*/) {}
+	public void/*List<User>*/ getAllUsers(){}
+	public User getUserById(String userId) throws SQLException {
+		User user = null;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL(""));
+		
+		return user;
+	}
+	public void passwordChange(/*User user*/) {}
+	public void deleteUser(String userId) {}
+	
+}

@@ -1,0 +1,3 @@
+user.getUserById=select user_id, name, password, point, email, deleted, admin, reg_date \
+				 from br_users \
+				 where user_id = ?
