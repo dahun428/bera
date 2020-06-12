@@ -22,9 +22,9 @@
 		<div class="body">
 			<div class="container">
 				<div class="content-header text-center">
-					<h1 class="display-4">MODIFY</h1>
+					<h1 class="display-4">MY PAGE</h1>
 					<p>
-						<strong>회원수정 페이지 입니다.</strong>
+						<strong>회원님을 위한 베스킨라빈스의 다양한 정보</strong>
 					</p>
 				</div>
 				<div class="custom-content-box">

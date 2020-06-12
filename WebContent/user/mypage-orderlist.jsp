@@ -14,9 +14,9 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
-		<%
-			String position = "order";
-		%>
+			<%
+				String position = "order";
+			%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
@@ -37,31 +37,42 @@
 					<!-- mypage-nav end -->
 					<!-- mypage-orderlist content start -->
 					<!-- 서버에서 주문정보 불러와서 테이블 형태로 화면에 나타내기 -->
+					<div class="row content-header text-center">
+						<div class="col-12">
+							<h2>주문 내역 페이지 입니다.</h2>
+						</div>					
+					</div>
 					<div class="row content-header">
-						<table class="table table-borered">
-							<thead>
-								<tr>
-									<th>상품명</th>
-									<th>상품가격</th>
-									<th>구매수량</th>
-									<th>구매일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>상품명</td>
-									<td>상품가격</td>
-									<td>구매수량</td>
-									<td>구매일</td>
-								</tr>
-								<tr>
-									<td>상품명</td>
-									<td>상품가격</td>
-									<td>구매수량</td>
-									<td>구매일</td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="col-12">
+							<h4>나의 주문내역</h4>
+							<hr />
+							<div class="my-order-table">
+								<table class="table table-borered">
+									<thead>
+										<tr>
+											<th>상품명</th>
+											<th>상품가격</th>
+											<th>구매수량</th>
+											<th>구매일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>상품명</td>
+											<td>상품가격</td>
+											<td>구매수량</td>
+											<td>구매일</td>
+										</tr>
+										<tr>
+											<td>상품명</td>
+											<td>상품가격</td>
+											<td>구매수량</td>
+											<td>구매일</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 					<!-- mypage-orderlist content end -->
 				</div>
