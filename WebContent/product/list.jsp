@@ -21,14 +21,14 @@
 		</div>
 		<div class="body">
 			<div class="list-banner">
-				<img src="../image/list-banner-img-main.jpg" alt="" />
+				<img src="../image/list-banner-img.jpg" alt="" />
 			</div>
 			<div class="container">
 
 				<div class="row">
 					<!-- monthly best item -->
 					<div class="col-12">
-						<h4 class="display-4 text-center">FLAVOR OF MONTH</h4>
+						<h4 class="display-4 text-center">BEST ITEM</h4>
 						<hr />
 						<div class="row">
 							<div class="col-2 text-center">
