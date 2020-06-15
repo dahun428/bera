@@ -1,0 +1,95 @@
+package com.br.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.br.utils.ConnectionUtil;
+import com.br.utils.QueryUtil;
+import com.br.vo.Product;
+
+/**
+ * 
+ * @author naru057
+ *
+ */
+public class ProductDao {
+	ArrayList<Product> products;
+	/**
+	 * 
+	 * @param product
+	 */
+	public void insertProduct(Product product) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement("");
+	}
+
+	/**
+	 * 
+	 * @param category
+	 */
+	public List<Product> getProductsByCategory(String category) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("product.getProductsByCategory"));
+		System.out.println(QueryUtil.getSQL("product.getProductsByCategory"));
+		pstmt.setString(1, category);
+		ResultSet rs = pstmt.executeQuery();
+		products = new ArrayList<Product>();
+		while(rs.next()) {
+			Product product = new Product();
+			int no = rs.getInt("product_no");
+			String name = rs.getString("name");
+			String imagePath = rs.getString("image_path");
+			product.setName(name);
+			product.setNo(no);
+			product.setImagePath(imagePath);
+			products.add(product);
+			
+		}
+		return products;
+	}
+
+	/**
+	 * 
+	 * @param productNo
+	 */
+	public Product getProductByProductNo(int productNo) throws SQLException {
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param product
+	 */
+	public void updateProduct(Product product) throws SQLException {
+	}
+
+	public ArrayList<Product> getAllProducts() throws SQLException {
+		ArrayList<Product> products = new ArrayList<Product>();
+		String sql = "select * from br_products";
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+
+		while (rs.next()) {
+			products.add(createProduct(rs));
+		}
+
+		ConnectionUtil.close(connection, pstmt, rs);
+
+		return products;
+	}
+
+	private Product createProduct(ResultSet rs) throws SQLException {
+		Product product = new Product();
+		int no = rs.getInt("product_no");
+		String name = rs.getString("name");
+		product.setNo(no);
+		product.setName(name);
+
+		return product;
+	}
+}

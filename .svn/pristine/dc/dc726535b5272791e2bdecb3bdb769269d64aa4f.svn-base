@@ -1,0 +1,33 @@
+notice.insertNotice=insert into br_notices \
+					( notice_no, notice_title, notice_content, notice_important ) \
+					values(SEQ_NOTICE_NO.nextval, ?, ?, ?) 
+
+notice.getAllNotice=select a.notice_no, a.notice_title, a.notice_content, a.notice_reg_date, a.notice_deleted, \
+							a.notice_important, b.image_path, a.rownumber \
+					from (select notice_no, notice_title, notice_content, notice_reg_date, notice_deleted, notice_important, \
+							     row_number() over (order by notice_no asc) rownumber \
+					      from br_notices \
+					      where notice_important = 1 \
+					      and notice_deleted = 1) a, br_notice_image_path b \
+					where a.notice_no = b.notice_no(+) \
+					and a.rownumber >= 0 and a.rownumber < 10 \
+					order by a.rownumber desc 
+notice.getAllNoticeImportant=select a.notice_no, a.notice_title, a.notice_content, a.notice_reg_date, \
+					       a.notice_deleted, a.notice_important, b.image_path \
+					from br_notices A, br_notice_image_path B \
+					where a.notice_no = b.notice_no(+) \
+					and a.notice_important = 0 \
+					and a.notice_deleted = 1 \
+					order by notice_no desc 	
+notice.getTotal=select count(*) as cnt from br_notices where notice_deleted = 1    					
+notice.getPaginatedNotice=select a.notice_no, a.notice_title, a.notice_content, a.notice_reg_date, a.notice_deleted, \
+							a.notice_important, b.image_path, a.rownumber \
+					from (select notice_no, notice_title, notice_content, notice_reg_date, notice_deleted, notice_important, \
+							     row_number() over (order by notice_no desc) rownumber \
+					      from br_notices \
+					      where notice_important = 1 \
+					      and notice_deleted = 1) a, br_notice_image_path b \
+					where a.notice_no = b.notice_no(+) \
+					and a.rownumber >= ? and a.rownumber < ? \
+					order by a.rownumber asc 
+					

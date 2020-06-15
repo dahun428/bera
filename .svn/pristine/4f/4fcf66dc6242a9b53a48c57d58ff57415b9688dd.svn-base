@@ -1,0 +1,128 @@
+package com.br.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.br.dto.NoticeDto;
+import com.br.utils.ConnectionUtil;
+import com.br.utils.QueryUtil;
+import com.br.vo.Notice;
+
+public class NoticeDao {
+	public void insertNotice(Notice notice) throws SQLException {
+		
+		String query = QueryUtil.getSQL("notice.insertNotice");
+		
+		Connection conn = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, notice.getTitle());
+		pstmt.setString(2, notice.getContent());
+		pstmt.setString(3, notice.getImportant());
+		
+		pstmt.executeUpdate();
+		
+		ConnectionUtil.close(conn, pstmt);
+	}
+	//getImportant  값이 0을 제외하고 모든 값 붑러오기
+	public List<NoticeDto> getAllNotice() throws SQLException {
+		List<NoticeDto> notices = new ArrayList<NoticeDto>();
+		
+		String query = QueryUtil.getSQL("notice.getAllNotice");
+		
+		Connection conn = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			NoticeDto notice = new NoticeDto();
+			notice.setRowNum(rs.getInt("rownumber"));
+			notice.setNo(rs.getInt("notice_no"));
+			notice.setTitle(rs.getString("notice_title"));
+			notice.setContent(rs.getString("notice_content"));
+			notice.setRegDate(rs.getDate("notice_reg_date"));
+			notice.setDeleted(rs.getBoolean("notice_deleted"));
+			notice.setImportant(rs.getString("notice_important"));
+			notice.setImagePath(rs.getString("image_path"));
+			notices.add(notice);
+			
+		}
+		ConnectionUtil.close(conn, pstmt, rs);
+
+		return notices;
+	}
+	public List<NoticeDto> getAllNoticeImportant() throws SQLException {
+		List<NoticeDto> notices = new ArrayList<NoticeDto>();
+		
+		String query = QueryUtil.getSQL("notice.getAllNoticeImportant");
+		
+		Connection conn = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			NoticeDto notice = new NoticeDto();
+			notice.setNo(rs.getInt("notice_no"));
+			notice.setTitle(rs.getString("notice_title"));
+			notice.setContent(rs.getString("notice_content"));
+			notice.setRegDate(rs.getDate("notice_reg_date"));
+			notice.setDeleted(rs.getBoolean("notice_deleted"));
+			notice.setImportant(rs.getString("notice_important"));
+			notice.setImagePath(rs.getString("image_path"));
+			notices.add(notice);
+			
+		}
+		ConnectionUtil.close(conn, pstmt, rs);
+
+		return notices;
+		
+	}
+	public int getTotal() throws SQLException  {
+		String query = QueryUtil.getSQL("notice.getTotal");
+		
+		int totalRows = 0;
+		
+		Connection conn = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		totalRows = rs.getInt("cnt");
+		ConnectionUtil.close(conn, pstmt, rs);
+		
+		return totalRows;
+	}
+	public List<NoticeDto> getPaginatedNotice(int startNo, int endNo) throws SQLException {
+		List<NoticeDto> notices = new ArrayList<NoticeDto>();
+		
+		String query = QueryUtil.getSQL("notice.getPaginatedNotice");
+		
+		Connection conn = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, startNo);
+		pstmt.setInt(2, endNo);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			NoticeDto notice = new NoticeDto();
+			notice.setRowNum(rs.getInt("rownumber"));
+			notice.setNo(rs.getInt("notice_no"));
+			notice.setTitle(rs.getString("notice_title"));
+			notice.setContent(rs.getString("notice_content"));
+			notice.setRegDate(rs.getDate("notice_reg_date"));
+			notice.setDeleted(rs.getBoolean("notice_deleted"));
+			notice.setImportant(rs.getString("notice_important"));
+			notice.setImagePath(rs.getString("image_path"));
+			notices.add(notice);
+			
+		}
+		ConnectionUtil.close(conn, pstmt, rs);
+		return notices;
+	}
+	public void getNoticeByNo(int noticeNo) {}
+	public void updateNotice(/*Notice notice*/) {}
+	public void deleteNotice(int noticeNo) {}
+	
+	
+}

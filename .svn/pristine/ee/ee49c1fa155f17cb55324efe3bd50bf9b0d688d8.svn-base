@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+</style>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+		<%
+			String position = "review";
+		%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<h1>리뷰 등록 페이지 입니다.</h1>
+				<div class="well">
+			<form method="post" action="register.jsp">
+				<div class="form-group">
+					<label>제목</label>
+					<div><input type="text" name="title" /></div>
+				</div>
+				<div class="form-group">
+					<label>내용</label>
+					<div><textarea rows="6" name="content"></textarea></div>
+				</div>
+				<div class="text-right">
+					<button type="submit">등록</button>
+				</div>
+			</form>
+		</div>
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+</body>
+</html>

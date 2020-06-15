@@ -1,0 +1,285 @@
+.brand-logo img {
+	width: 100px;
+	height: auto;
+	margin: 20px 0 20px 0;
+}
+.color-pink{
+	color: #ff69b4;
+}
+.color-pink i{
+	color: #ff69b4;
+}
+.color-gray-pink{
+	color: #B86824;
+}
+.product-detail-img img{
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	left: 410px;
+}
+.product-con-img img{
+	width: 110px;
+	height: auto;
+	margin-top: 240px;
+	margin-left: 15px;
+}
+.product-detail-btn{
+	position: absolute;
+	top: 450px;
+	left: 548px;
+}
+.search_icon {
+	height: 60px;
+	width: 60px;
+	float: right;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
+	border-radius: 50%;
+	color: #ff69b4;
+	text-decoration: none;
+	background-color: white;
+}
+
+.search_icon:hover {
+	text-decoration: none;
+	color: #ff69b4;
+}
+
+.header {
+	background-color: #FDF5E6;
+}
+
+body {
+	border-top: 2px solid #ff69b4;
+}
+
+.navi {
+	border: 1px solid gray;
+}
+
+.nav-item {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.nav-link {
+	font-size: 0.7rem;
+	font-weight: bold;
+}
+
+.nav-item a {
+	color: black;
+	font-size: 0.8rem;
+	font-weight: bolder;
+}
+
+.container {
+	width: 1200px;
+	max-width: none !important;
+}
+
+.nav-sub, .nav-sub a {
+	font-weight: lighter !important;
+	color: gray;
+	text-decoration: none;
+}
+
+.nav-sub-menu {
+	list-style: none;
+	padding: 0px;
+}
+
+.nav-item {
+	width: 180px;
+	text-align: center;
+}
+
+.nav-sub-menu li {
+	font-size: 0.7rem;
+	margin: 1rem;
+}
+
+.nav-sub-menu img {
+	width: 160px;
+	height: auto;
+}
+
+.nav-sub {
+	display: none;
+	text-align: center;
+}
+
+.thumbnail img {
+	width: 286px;
+	height: 286px;
+}
+
+.custom-card-title {
+	font-size: 1rem;
+}
+
+.custom-card-text {
+	font-size: 0.8rem;
+	font-weight: bold;
+	margin: 2px;
+}
+
+.custom-card-body {
+	padding: 5px;
+}
+
+.custom-card-body a {
+	text-decoration: none;
+	color: gray;
+}
+
+.custom-card-footer {
+	font-size: 0.7rem;
+}
+
+.carousel-item img {
+	height: 600px;
+	width: auto;
+}
+
+.body-background {
+	height: 700px;
+	width: auto;
+	background-color: red;
+	border: 1px solid dark;
+}
+
+.banner {
+	height: 600px;
+	border-top: 1px solid white;
+}
+.list-banner{
+	height: 
+}
+.br-event-container {
+	margin: 91px 0 91px 0;
+}
+
+.br-event-title {
+	margin-bottom: 2.5rem;
+}
+
+.active {
+	color: #ff69b4 !important;
+}
+
+.footer {
+	border-top: 1px solid #FFC6C3;
+	font-weight: bold;
+	margin: 50px 91px 50px 91px;
+}
+
+.footer-logo img {
+	margin: 30px 0 10px 0;
+}
+
+.footer-text p {
+	margin: 0;
+	padding: 0;
+	color: gray;
+}
+
+hr {
+	color: #ff69b4;
+	background-color: #ff69b4;
+	border-color: #ff69b4;
+}
+
+.content-header {
+	margin: 30px 91px 30px 91px;
+}
+
+.title p {
+	font-weight: bold;
+	color: #ff69b4 !important;
+	margin-bottom: 3rem;
+}
+.title p a{
+	color: #ff69b4 !important;
+	text-decoration: none;
+}
+.login-box-wrap {
+	width: 450px;
+	height: 160px;
+	margin: 0 auto;
+}
+
+.custom-content-box {
+	margin: 0 91px 0 91px;
+}
+.out-btn {
+	height: 100px;
+	width: 100px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	color: gray;
+	text-decoration: none;
+	background-color: gray;
+	color: white;
+	border-style: none;
+}
+.login-btn {
+	height: 100px;
+	width: 100px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	color: #ff69b4;
+	text-decoration: none;
+	background-color: #ff69b4;
+	color: white;
+	border-style: none;
+}
+.custom-box-wrap{
+	width: 600px;
+	border: 1px solid #dee2e6;
+	margin: 0 auto;
+	margin-bottom: 2rem;
+	margin-top:2rem;
+	border-radius: 0.3rem;
+}
+.custom-box{
+	margin: 1rem;	
+}
+.list-box{
+	margin:10px 0 10px 0;
+}
+.custom-border-right{
+	border-right: 1px solid #ff69b4;
+}
+.orderlist table tbody td{
+	
+}
+.orderlist table tbody td img{
+	width: 150px;
+	height: 150px;
+}
+.orderlist table tbody td p, .orderlist table tbody td button, .orderlist table tbody td input{
+	margin: 60px 0 60px 0;
+}
+.orderlist-img{
+	margin: 50px 0 50px 0;
+}
+.custom-hashtag {
+	color: #ff69b4 !important;
+	text-decoration: none !important;
+	font-size: 0.8rem;
+}
+.custom-modal-x{
+	padding-right: 20px;
+}
+.custom-modal-body{
+	height: 350px;
+}
+.custom-modal-p{
+	margin: 0px;
+}

@@ -1,0 +1,21 @@
+<%@page import="com.br.vo.Review"%>
+<%@page import="com.br.dao.ReviewDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<% 
+   String title = request.getParameter("title");
+   String content = request.getParameter("content");
+   
+	// Review객체를 생성하고 Review정보를 저장한다.
+   Review review = new Review();
+   review.setTitle(title);
+   review.setContent(content);
+   
+   ReviewDao reviewDao = new ReviewDao();
+   // Review 정보를 데이터베이스에 저장한다.
+   reviewDao.insertReview(review);
+   
+   // list.jsp를 재용청하는 응답을 보낸다.
+   response.sendRedirect("detail.jsp");
+   %>

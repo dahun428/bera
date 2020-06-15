@@ -1,0 +1,33 @@
+product.insertProduct = \
+insert into br_products \
+(product_no,name,amount,price,point,discount_price,category,explain) \ 
+values \
+(seq_product_no.nextval,?,?,?,?,?,?,?)
+product.updateProduct=\
+
+product.createProduc=\
+
+product.getAllProducts=\
+select a.product_no, name, price, point, discount_price,category, image_path, explain \
+from br_products a \
+join br_product_image_path b \
+on b.product_no = a.product_no
+
+product.getProductsByCategory=\
+select a.product_no, name, price, point, discount_price,category, image_path, explain \
+from br_products a \
+join br_product_image_path b \
+on b.product_no = a.product_no \
+where a.category= ?
+
+product.getProductByProductNo=\
+select  name, price, point, discount_price,category, image_path, explain \
+from br_products a \
+join br_product_image_path b \
+on b.product_no = a.product_no \
+where a.product_no = ?
+
+product.getProductTagByProductNo=\
+select product_tag \
+from br_product_tag \
+where product_no = ?

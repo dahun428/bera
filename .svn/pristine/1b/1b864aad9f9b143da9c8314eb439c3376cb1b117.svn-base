@@ -1,0 +1,18 @@
+<%@page import="com.br.vo.Review"%>
+<%@page import="com.br.dao.ReviewDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ include file ="../common/session.jsp" %>
+
+<% 
+
+   String no = .request.getParameter("no");
+   String productNo = request.getParameter("productNo");
+   String title = request.getParameter("title");
+   String content = request.getParameter("content");
+   
+   Review review = new Review();
+   review.setProductNo(productNo);
+   review.setNo(no);
+   %>

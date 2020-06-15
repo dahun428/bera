@@ -1,0 +1,195 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	.error {
+		color: red;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.field-error {
+		border: 1px solid red;
+	}
+</style>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+		<%
+			String position = "join";
+		%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<div class="container">
+			
+				<div class="content-header text-center">
+					<h1 class="display-4">JOIN</h1>
+					<p>
+						<strong>회원등록 페이지 입니다.</strong>
+					</p>
+				</div>
+				<div class="custom-content-box">
+					<hr />
+					<div class="title text-center">
+						<h5>베스킨라빈스 회원가입</h5>
+						<p>회원등록을 하셔서 다양한 혜택을 만나보세요</p>
+						
+					</div>
+					<div class="error">
+						<%
+							String error = request.getParameter("error");
+						%>
+						<%
+							if ("dup".equals(error)) {
+									
+						%>
+							<p class="text-center">이미 사용중인 아이디입니다.</p>
+						<%
+							}			
+						%>
+					</div>	
+					<!-- join form start -->
+					<div class="custom-box-wrap">
+						<div class="custom-box">
+							<form id="user-joinform"method="post"action="joinregister.jsp"onsubmit="checkField(event)">
+								<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<td>이름</td>
+											<td>
+												<div id='name_input' class="form-group">
+													<input name="name" type="text" class="form-control" />
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>아이디</td>
+											<td>
+												<div id='id_input' class="form-group">
+													<input name="id" type="text" class="form-control" />
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>비밀번호</td>
+											<td>
+												<div id='pwd_input'class="form-group">
+													<input name="pwd" type="text" class="form-control" />
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>비밀번호 확인</td>
+											<td>
+												<div id='pwd-chk_input'class="form-group">
+													<input name="pwd-chk" type="text" class="form-control" />
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>전화번호</td>
+											<td>
+												<div id='tel-input'class="form-group">
+													<input name="tel" type="text" class="form-control" />
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>이메일</td>
+											<td>
+												<div id='email-input'class="form-group">
+													<input name="email" type="text" class="form-control" />
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">
+												<div class="form-group">
+													<input type="checkbox" name="userAgree"
+														id="join-user-agree"> <label><small>이용약관
+															및 개인정보 처리 방침에 동의합니다.</small></label>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							<div class="form-btn text-right">
+								<a href="../home.jsp"class="btn btn-secondary">돌아가기</a>
+								<button type="submit" class="btn btn-primary">회원가입</button>
+							</div>
+							</form>
+						</div>
+					</div>
+					<!-- join form end -->
+				</div>
+			</div>
+		
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+<script type="text/javascript">
+	function checkField(event) {
+		clearErrorField();
+		var nameField = document.querySelector("input[name=name]");
+		var emailField = document.querySelector("input[name=email]");
+		var idField = document.querySelector("input[name=id]");
+		var pwdField = document.querySelector("input[name=pwd]");
+		var telField = document.querySelector("input[name=tel]");
+		var pwdchkField = document.querySelector("input[name=pwd-chk]");
+		
+		var isPassed = true;
+		if (!nameField.value) {
+			//nameField.classList.add("field-error");
+			document.querySelector("#name_input").classList.add("field-error");
+			isPassed = false;
+		}
+		if (!emailField.value) {
+			//emailField.classList.add("field-error");
+			document.querySelector("#email_input").classList.add("field-error");
+			isPassed = false;
+		}
+		if (!idField.value) {
+			//idField.classList.add("field-error");
+			document.querySelector("#id_input").classList.add("field-error");
+			isPassed = false;
+		}
+		if (!pwdField.value) {
+			//pwdField.classList.add("field-error");
+			document.querySelector("#pwd_input").classList.add("field-error");
+			isPassed = false;
+		}
+		if (!telField.value) {
+			//telField.classList.add("field-error");
+			document.querySelector("#tel_input").classList.add("field-error");
+			isPassed = false;
+		}
+		if (!pwdchkField.value) {
+			//pwdchkField.classList.add("field-error");
+			document.querySelector("#pwd-chk_input").classList.add("field-error");
+			isPassed = false;
+		}
+		if (!isPassed) {
+			event.preventDefault();			
+		}
+	}
+	
+	function clearErrorField() {
+		var fields = document.querySelectorAll(".form-group input");
+		for (var i=0; i<fields.length; i++) {
+			var input = fields[i];
+			input.classList.remove('field-error');
+		}
+	}
+</script>
+</body>
+</html>

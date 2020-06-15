@@ -1,0 +1,104 @@
+package com.br.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.management.Query;
+
+import com.br.utils.ConnectionUtil;
+import com.br.utils.QueryUtil;
+import com.br.vo.Review;
+
+public class ReviewDao {
+	
+	public void insertReview(Review review) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.insertReview"));
+	
+		pstmt.setString(1, review.getTitle());
+		pstmt.setString(2, review.getContent());
+		
+		pstmt.executeUpdate();
+		pstmt.close();
+		connection.close();
+	}
+	
+	public List<Review> getReviewsByProductNo(int productNo) throws SQLException {
+		List<Review> reviews = new ArrayList<Review>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.getReviewsByProductNo"));
+		pstmt.setInt(1, productNo);
+		ResultSet rs  = pstmt.executeQuery();
+		while (rs.next()) {
+			Review review = new Review();
+			review.setNo(rs.getInt("review_no"));
+			review.setUserId(rs.getString("user_id"));
+			review.setPoint(rs.getInt("review_point"));
+			review.setContent(rs.getString("review_content"));
+			
+			reviews.add(review);
+		}
+		rs.close();
+		pstmt.close();
+		connection.close();
+			
+		return reviews;
+	}
+	
+	public List<Review> getReviewByReviewNo(int reviewNo) throws SQLException {
+		List<Review> reviews = new ArrayList<Review>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.getReviewsByReviewNo"));
+		pstmt.setInt(1, reviewNo);
+		ResultSet rs  = pstmt.executeQuery();
+		while (rs.next()) {
+			Review review = new Review();
+			review.setNo(rs.getInt("review_no"));
+			review.setUserId(rs.getString("user_id"));
+			review.setPoint(rs.getInt("title"));
+			review.setContent(rs.getString("review_content"));
+			
+			reviews.add(review);
+		}
+		rs.close();
+		pstmt.close();
+		connection.close();
+			
+		return reviews;
+	}
+	
+	
+	public void deleteReview(int reviewNo) throws SQLException{
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.deleteReview"));
+		
+		pstmt.setInt(1, reviewNo);
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		connection.close();
+	}
+	
+	
+	public void reviewUpdate(Review review) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.updateReview"));
+		
+		pstmt.setString(1, review.getTitle());
+		pstmt.setString(2, review.getContent());
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		connection.close();
+	}
+	
+}

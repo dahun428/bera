@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+</style>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+		<%
+			String position = "notice";
+		%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+		<div class="container">
+				<div class="row">
+					<div class="col-12 custom-box">
+						<h4 class="display-4 text-center">NOTICE</h4>
+						<div class="title text-center">
+							<h5>공지사항</h5>
+							<hr />
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="card">
+									<div class="card-header text-center">
+									<!-- event title -->
+										<h4 class="font-weight-bold">공지사항 타이틀입니다.</h4>
+									<!-- event title -->
+									</div>
+									<div class="card-body">
+									
+								<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<td>
+												<p class="text-left color-pink font-weight-bold">
+												<span>등록일</span>
+													2020-06-01
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="custom-event-box">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eius veritatis maxime ullam vitae minima eaque iste perspiciatis molestiae earum natus laboriosam possimus ea quia esse. Atque architecto dolores delectus ipsum voluptates consequatur laborum harum repellendus natus quis. Fugiat hic deserunt sed delectus earum tenetur distinctio quia veritatis enim atque fuga ea aspernatur nulla cum suscipit nam error quo maxime. Ducimus alias adipisci sunt laborum earum. Accusantium amet voluptatibus ducimus. Ducimus dolore ipsam quisquam rem quo nobis neque excepturi atque dolor facilis tempora quia unde ex dicta voluptas accusantium minima cumque inventore laudantium recusandae necessitatibus repudiandae temporibus! Ratione nesciunt aspernatur quis amet aut deleniti voluptas reiciendis rerum natus reprehenderit repellendus consequatur vitae optio dolor esse illum molestias nihil totam velit animi cumque exercitationem corporis consectetur accusamus et obcaecati odio voluptates eligendi architecto nobis. Iste labore deserunt dicta ipsam laudantium suscipit nisi qui ut exercitationem ullam velit odio cumque id dolorum numquam in sunt voluptates ad est officia tempora saepe corporis quam eligendi facere harum eos reprehenderit minus quae delectus voluptatibus deleniti recusandae accusantium veniam voluptas consequuntur dolore corrupti sed vitae sit. Maxime explicabo neque quaerat cupiditate esse pariatur officia et placeat impedit consectetur fugiat laboriosam dolores assumenda inventore aspernatur exercitationem consequatur voluptas nostrum sunt beatae repellendus cumque delectus a sint cum molestias soluta facilis earum distinctio vero doloremque praesentium corporis odio nesciunt at odit aut culpa maiores veritatis expedita sapiente consequuntur. Aspernatur hic voluptatem beatae minima praesentium maiores id voluptates ducimus illo esse aperiam enim quisquam vero non unde doloribus recusandae magnam vitae pariatur error. Harum id vero illo dolore blanditiis sunt recusandae eveniet perspiciatis amet provident minima a ex. Fugit aperiam cupiditate labore nulla tempora doloribus aut veniam molestiae pariatur nam porro beatae culpa officiis ipsum aliquid eius quis fuga sit eum nemo qui quidem asperiores natus consectetur voluptas! Quos cupiditate ducimus rerum dolorem est quibusdam cum itaque minima molestias praesentium deleniti aspernatur voluptate cumque voluptates laborum consequatur nam hic. Eligendi sapiente commodi distinctio aliquid veniam beatae autem quod reprehenderit labore doloribus voluptates magnam error ut accusantium aspernatur delectus ullam at odio odit vitae minus ipsa quibusdam quas inventore cum. Ad provident numquam natus accusamus fugiat facilis tempore eaque! Necessitatibus blanditiis harum nemo architecto a nulla dicta cupiditate et sapiente neque ipsa quis voluptates? Quas perferendis illo inventore deleniti magni debitis tenetur reiciendis eaque nesciunt doloribus aliquid rem consequatur obcaecati iste ex officiis voluptatum vero esse hic assumenda quos architecto a! Nam consequuntur tenetur enim architecto dolore assumenda ex eveniet tempora sint beatae amet ratione porro natus odio impedit quidem ad? Ipsa non at odio ad deleniti ex quis quod optio eaque maxime. Quo ea consequuntur amet consectetur earum velit voluptatum veniam voluptate similique est enim in praesentium libero magnam fugit dolore perferendis facilis provident perspiciatis obcaecati illo cumque aliquid ullam asperiores eos qui mollitia inventore facere quas expedita? Dolorum recusandae ratione vitae quis quasi eaque adipisci distinctio tempora quia quae non totam illo laborum provident explicabo consequuntur repellendus ad sequi nesciunt numquam magnam debitis ipsa accusantium molestiae ex quo obcaecati officia voluptas voluptates sed iste beatae saepe possimus illum dolore inventore repellat nam similique incidunt maiores. Nemo quam eaque aut consequuntur aliquid cum perspiciatis eum neque repellendus facere pariatur voluptas dolorem quibusdam similique laudantium in accusamus fugiat dolores repellat est? Reprehenderit mollitia at laboriosam blanditiis natus doloremque esse dolor pariatur sequi provident. Tempore qui laboriosam at eveniet suscipit nemo voluptatem ex sapiente hic a molestiae quis debitis provident quo deserunt labore aperiam itaque repellendus quaerat culpa eos voluptates porro dolor saepe iste cumque consequatur? Blanditiis totam eos veritatis soluta doloribus modi sapiente hic voluptatum dolore libero! Veniam deserunt perferendis at voluptate quae soluta quam nesciunt voluptas rerum repudiandae qui reprehenderit quisquam libero ipsa deleniti sit quaerat. Ex officiis eius rerum sequi assumenda quisquam provident totam cumque fugiat animi commodi eveniet illum pariatur non nemo iste consequuntur placeat nihil eaque voluptatem dignissimos amet quis sapiente officia debitis hic ipsum vero quod sed. Quod dolorum blanditiis nemo suscipit saepe explicabo magni voluptas. Eveniet minus doloremque accusantium accusamus voluptatum nostrum aspernatur culpa perspiciatis minima ut saepe natus quibusdam maxime deleniti sunt! Itaque blanditiis placeat cupiditate impedit laudantium eius ullam vero illum expedita quo consectetur quos beatae dolor ratione repudiandae tempore nobis maiores cumque consequatur explicabo voluptas sunt nesciunt sequi. Assumenda debitis dolorem culpa autem exercitationem laborum temporibus delectus ipsam quo consequatur atque libero minus nihil beatae adipisci vero ipsum itaque et necessitatibus repellat? Reiciendis quo nemo dolorum beatae repellendus ratione distinctio maiores sint molestiae nam excepturi velit! Voluptatibus harum alias maiores ullam quo dolore nam nihil nobis sit modi soluta similique et doloribus neque pariatur beatae saepe. Aut libero aspernatur nihil facilis. Modi molestiae amet aspernatur magnam assumenda inventore tempore sint esse eaque cumque consectetur delectus officia ipsum autem asperiores totam earum iusto eveniet et similique tenetur soluta minima ad necessitatibus animi consequuntur cupiditate veniam id iure eligendi debitis ut eos minus perferendis explicabo quis non. Fugiat rem dignissimos nihil quod consequuntur cupiditate nisi perspiciatis et placeat incidunt natus in earum officiis vitae nostrum alias voluptatem quibusdam necessitatibus voluptate iusto tempore totam reiciendis quaerat commodi laboriosam iure minus illum facere doloribus impedit! Quo consequatur doloremque ab repudiandae reiciendis perferendis odio cupiditate dolor optio magni repellat quisquam neque? Ipsam incidunt repudiandae esse quidem atque veniam animi nisi quibusdam minima placeat reiciendis assumenda dolore provident modi eligendi pariatur autem officia quae dolorum in. Quaerat molestiae facere hic sapiente illum accusamus atque suscipit eveniet sed distinctio facilis tenetur odit pariatur quas saepe animi iste voluptatem maiores adipisci voluptates! Repellendus provident aliquam impedit iure reprehenderit vel quasi ratione maiores architecto dicta omnis similique ducimus fuga non vitae excepturi libero sunt fugit modi in animi illo eum incidunt sint minus aliquid sapiente explicabo voluptates nihil alias? Alias reprehenderit doloremque velit labore inventore sapiente dolorum unde nihil voluptates officia vitae voluptatem! Voluptatem consequatur asperiores expedita eveniet inventore repellat magnam nostrum dolores aliquam similique impedit ratione incidunt fuga alias debitis doloribus distinctio nisi perferendis aut quod ex at illum. Saepe cumque voluptatum vero quos repudiandae incidunt ex corporis.</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 text-center">
+								<hr />
+								<a href="list.jsp" class="btn btn-outline-primary btn-lg">목록으로</a>
+							</div>
+							<div class="col-12 text-right">
+								<a href="modifyform.jsp" class="btn btn-primary">수정</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		
+		
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+</body>
+</html>

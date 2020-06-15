@@ -1,0 +1,13 @@
+user.getUserById=select user_id, name, password, point, email, deleted, admin, reg_date \
+				 from br_users \
+				 where user_id = ?
+				 
+user.insertUser=insert into br_users \
+				(user_id, name, password, phone, email) \
+				values(?, ?, ?, ?, ?)	
+			
+user.getAllUsers=select user_id, name, password, point, email, deleted, admin, reg_date \
+				 from br_users \
+				 
+user.deleteUser=delete from br_users \
+				where user_id = ?

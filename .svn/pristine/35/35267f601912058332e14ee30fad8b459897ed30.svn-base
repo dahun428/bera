@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+</style>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+		<%
+			String position = "event";
+		%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<div class="container">
+				<div class="content-header text-center">
+					<h1 class="display-4">EVENT</h1>
+					<p>
+						<strong>이벤트 등록 페이지 입니다.</strong>
+					</p>
+				</div>
+				<!-- event form start -->
+					<div class="custom-content-box">
+							<form action="">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<td class="text-center" colspan="4">EVENT</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="4">
+												<input type="text" class="form-control"
+												placeholder="제목을 입력해주세요" name="title" maxlength="50" />
+											</td>
+										</tr>
+										<tr>
+										<td colspan="2">
+										<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="imageUpload" />
+														<label for="imageUpload" class="custom-file-label">썸네일 이미지 등록</label>
+													</div>
+												</div>
+											<div class="card">
+												<img src="../image/EVENT/banner_flavor_month_insta_2006.png" alt="" class="card-img-top" />
+											</div>
+										</td>
+											<td colspan="2">
+												<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="imageUpload" />
+														<label for="imageUpload" class="custom-file-label">이미지 등록</label>
+													</div>
+												</div>
+												<div>
+													<img src="../image/bera-review-sample.jpg" class="card-img" alt="...">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4">
+												<textarea class="form-control" placeholder="내용을 입력해주세요"
+													name="content" maxlength="2048" style="height: 100px;" /></textarea>
+											</td>
+										</tr>	
+									</tbody>
+								</table>
+							<div class="form-btn text-right">
+								<button onclick="history.go(-1);" type="button" class="btn btn-secondary">돌아가기</button>
+								<button type="submit" class="btn btn-primary">작성완료</button>
+							</div>
+							</form>						
+						</div>
+					</div>
+				<!-- event form end -->
+				</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+</body>
+</html>

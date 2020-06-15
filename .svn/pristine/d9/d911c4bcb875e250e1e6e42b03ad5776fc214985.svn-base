@@ -1,0 +1,28 @@
+package com.br.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.br.utils.ConnectionUtil;
+import com.br.utils.QueryUtil;
+import com.br.vo.Notice;
+
+public class NoticeDao {
+	public void insertNotice(Notice notice) throws SQLException {
+		
+		String query = QueryUtil.getSQL("notice.insertNotice");
+		
+		Connection conn = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, notice.getTitle());
+		pstmt.setString(2, notice.getContent());
+		
+		
+	}
+	public void/*List<Notice>*/ getAllNotice() {}
+	public void/*List<Notice>*/ getPaginatedNotice(int startNo, int endNo) {}
+	public void getNoticeByNo(int noticeNo) {}
+	public void updateNotice(/*Notice notice*/) {}
+	public void deleteNotice(int noticeNo) {}
+}

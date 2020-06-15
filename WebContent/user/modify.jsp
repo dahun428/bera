@@ -1,0 +1,22 @@
+<%@page import="com.br.vo.User"%>
+<%@page import="com.br.dao.UserDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	String password = request.getParameter("pwd");
+	String passwordCheck = request.getParameter("pwd-chk");
+	String phone = request.getParameter("tel");
+	String email = request.getParameter("email");
+	
+	UserDao userDao = new UserDao();
+	User user = userDao.getUserById(loginedUserId);
+	
+	user.setPassword(password);
+	user.setPhone(phone);
+	user.setEmail(email);
+	
+	userDao.infoChange(user);
+	response.sendRedirect("mypage-point.jsp");
+%>
