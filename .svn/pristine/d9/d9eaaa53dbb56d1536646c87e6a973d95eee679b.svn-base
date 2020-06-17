@@ -1,0 +1,43 @@
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="java.util.List"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="com.br.utils.FileUtil"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@page import="com.br.utils.BRStatics"%>
+<%@page import="java.io.File"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.Paths"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = "";
+	if (request.getHeader("User-Agent").indexOf("Windows") > 0) {
+		//윈도우인 경우
+		path = BRStatics.ROOT_PATH;
+	} else if (request.getHeader("User-Agent").indexOf("Mac") > 0) {
+		path = BRStatics.ROOT_PATH_FOR_MAC;
+		//맥인 경우
+	}
+	//다시만들어
+
+	DiskFileItemFactory factory = new DiskFileItemFactory();
+	ServletFileUpload upload = new ServletFileUpload(factory);
+	upload.setHeaderEncoding("utf-8");
+
+	List<FileItem> items = upload.parseRequest(request);
+	
+	for(FileItem fi : items){
+		if(fi.isFormField()){
+		out.print(fi.getFieldName());
+		String value = new String((fi.getString().getBytes("8859_1")),"utf-8");
+		out.print("<br>");
+		out.print(value);
+		out.print("<br>");
+		}else{
+			name = new File(fi.getName()).getName();
+			value = new File(fi.getName()).getName();
+		}
+	}
+%>

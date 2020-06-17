@@ -1,0 +1,46 @@
+order.addShoppingBasket=insert into br_shopping_basket \
+						(user_id, product_no, amount) \
+						values(?, ?, ?)
+						
+order.getAllBasketByUserId=select image_path, name, price, discount_price, point, a.product_no, a.category, c.amount \
+						   from br_products A, br_product_image_path B, br_shopping_basket C \
+						   where a.product_no = b.product_no \
+						   and a.product_no = c.product_no \
+						   and user_id = ?
+						   
+order.getProductByBasket=select user_id, a.product_no, name, price, point, discount_price, a.category, image_path, c.amount \
+						 from br_products A, br_product_image_path B, br_shopping_basket C \
+						 where a.product_no = b.product_no \
+						 and a.product_no = c.product_no \
+						 and a.product_no = ? \
+						 and user_id = ?
+order.basketAmountPlus=update br_shopping_basket \
+					   set \
+					   	amount = ? \
+					   where user_id = ? \
+					   and product_no = ?
+					   
+						 
+						 
+						 
+order.insertOrderMain=insert into br_order_main \
+						(order_no, user_id, order_using_point, order_payment) \
+					values \
+						(seq_order_no.nextval, ?, ?, ?)	
+						
+order.insertOrderSub=insert into br_order_sub \
+						(order_no, product_no, product_price, order_product_amount) \
+					values \
+						(?, ?, ?, ?)		
+						
+order.getCurrval=select seq_order_no.currval as order_no \
+				from dual						 
+
+order.getOrderByOrderNo=select a.order_using_point, a.order_payment, b.product_price, b.order_product_amount \
+						from br_order_main a, br_order_sub b \
+						where a.order_no = b.order_no \
+						and a.order_no = ?
+						
+order.getOrderByUserId=select name, order_payment, order_product_amount, reg_date \
+						from br_order_main \
+						where user_id = ?						

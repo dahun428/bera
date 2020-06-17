@@ -1,0 +1,214 @@
+<%@page import="com.br.dto.BasketDto"%>
+<%@page import="com.br.dao.OrderDao"%>
+<%@page import="com.br.vo.Product"%>
+<%@page import="com.br.dao.ProductDao"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- header start -->
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<!-- header end -->
+
+		<div class="navi">
+			<%
+				String position = "credit";
+			%>
+			<!-- navi start -->
+			<%@ include file="/common/navi.jsp"%>
+			<!-- navi end -->
+		</div>
+		<div class="body">
+			<%
+				// credit.jsp에 나올 상품 리스트
+				String[] productNo = request.getParameterValues("productNo");
+				int amount = NumberUtil.stringToInt(request.getParameter("amount")); // 내일 여기 배열로 받아야됨
+				
+				int[] productNoList = new int[productNo.length];
+				for (int i = 0; i < productNoList.length; i++) {
+					productNoList[i] = NumberUtil.stringToInt(productNo[i]);
+				}
+			%>
+			<div class="container">
+				<div class="content-header text-center">
+					<h1 class="display-4">CREDIT</h1>
+					<p>
+						<strong>주문 결제 페이지 입니다.</strong>
+					</p>
+				</div>
+				<div class="custom-content-box">
+					<hr />
+					<div class="title text-center">
+						<h5>회원님의 소중한 결제 감사합니다.</h5>
+						<p>언제나 고객님을 위해 최선을 다하겠습니다.</p>
+					</div>
+					<form action="">
+						<div class="row orderlist">
+							<div class="col-12">
+								<!-- creidt form start -->
+
+								<table class="table table-bordered text-center">
+									<thead>
+										<tr>
+											<th scope="row"><input type="checkbox" /></th>
+											<th scope="row" colspan="2">상품</th>
+											<th scope="row" style="width: 80px;">수량</th>
+											<th scope="row">가격(원)</th>
+											<th scope="row">구매 시 적립포인트</th>
+
+										</tr>
+									</thead>
+									<!-- 서버에서 장바구니 구현하기 -->
+									<tbody>
+										<%
+											OrderDao orderDao = new OrderDao();
+
+											for (int i = 0; i < productNoList.length; i++) {
+												BasketDto basketDto = orderDao.getProductByBasket(productNoList[i]);
+										%>
+										<tr>
+											<td><input type="checkbox" /></td>
+											<td><img
+												src="../image/<%="ICECREAM".equals(basketDto.getCategory()) ? "ICECREAM" : "CAKE"%>/<%=basketDto.getImagePath()%>" />
+											</td>
+											<td>
+												<p><%=basketDto.getName()%></p>
+											</td>
+											<td>
+												<p>
+													<input type="number" value="<%=basketDto.getAmount() %> " name="count"
+														class="form-control text-right" id="count" />
+												</p>
+											</td>
+											<td>
+												<p><%=NumberUtil.numberWithComma(basketDto.getPrice() - basketDto.getDiscountPrice())%></p>
+											</td>
+											<td>
+												<p><%=NumberUtil.numberWithComma(basketDto.getPoint())%>p
+												</p>
+											</td>
+										</tr>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-12">
+								<table class="table table-bordered">
+									<tbody>
+										<tr class="table-borderless">
+											<td colspan="3">총 상품금액</td>
+											<td colspan="1">
+												<!-- product price -->
+												<div class="text-right font-weight-bold">
+													10,200 <span>원</span>
+												</div>
+											</td>
+										</tr>
+										<tr class="table-borderless">
+											<td colspan="3">할인금액</td>
+											<td colspan="1">
+												<!-- product price -->
+												<div class="text-right font-weight-bold text-danger">
+													2,000 <span>원</span>
+												</div>
+											</td>
+										</tr>
+										<tr class="table-borderless">
+											<td colspan="3">현재보유포인트</td>
+											<td colspan="1"><div
+													class="text-right font-weight-bold text-primary">
+													1000<span>point</span>
+												</div></td>
+										</tr>
+										<tr class="table-borderless">
+											<td colspan="1"><span>포인트사용</span></td>
+											<td colspan="3">
+												<!-- point --> <input class="form-control" type="number"
+												style="margin: 0px;" />
+											</td>
+										</tr>
+										<tr class="table-borderless">
+											<td colspan="1"><span class="font-weight-bold">총결제금액</span></td>
+											<td colspan="3">
+												<div class="text-right font-weight-bold">
+
+													8,200 <span>원</span>
+
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-12 text-center">
+							<hr />
+							<div class="title">
+								<h5>회원정보</h5>
+							</div>
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<td>이름</td>
+										<td>
+											<div class="form-group">
+												<input name="name" type="text" class="form-control"
+													disabled="disabled" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>아이디</td>
+										<td>
+											<div class="form-group">
+												<input name="id" type="text" class="form-control"
+													disabled="disabled" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>전화번호</td>
+										<td>
+											<div class="form-group">
+												<input name="tel" type="text" class="form-control" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>이메일</td>
+										<td>
+											<div class="form-group">
+												<input name="email" type="text" class="form-control" />
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<hr />
+						</div>
+						<div class="text-center">
+							<button type="button" class="btn btn-secondary btn-lg">돌아가기</button>
+							<button type="submit" class="btn btn-primary btn-lg">결제하기</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+</body>
+</html>

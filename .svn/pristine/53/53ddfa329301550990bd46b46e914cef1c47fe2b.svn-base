@@ -1,0 +1,22 @@
+<%@page import="com.br.utils.BRStatics"%>
+<%@page import="java.io.File"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.Paths"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+
+Path relPath = Paths.get("");
+String path = relPath.toAbsolutePath().toString();
+out.println(path);
+out.println("<br>");
+out.println(System.getProperty("dataSource.username"));
+out.println("<br>");
+File file = new File(".\\test");
+out.println(file.getAbsoluteFile());
+out.println("<br>");
+
+
+out.println(BRStatics.ROOT_PATH);
+out.println("<br>");
+%>

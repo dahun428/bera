@@ -1,0 +1,24 @@
+order.addShoppingBasket=insert into br_shopping_basket \
+						(user_id, product_no, amount) \
+						values(?, ?, ?)
+						
+order.getAllBasketByUserId=select image_path, name, price, discount_price, point, a.product_no, a.category, c.amount \
+						   from br_products A, br_product_image_path B, br_shopping_basket C \
+						   where a.product_no = b.product_no \
+						   and a.product_no = c.product_no \
+						   and user_id = ?
+						   
+order.getProductByBasket=select a.product_no, name, price, point, discount_price, a.category, image_path, c.amount \
+						 from br_products A, br_product_image_path B, br_shopping_basket C \
+						 where a.product_no = b.product_no \
+						 and a.product_no = c.product_no \
+						 and a.product_no = ?
+order.insertOrderMain=insert into br_order_main \
+						(user_id, order_using_point, order_payment) \
+					values \
+						(?, ?, ?)	
+order.insertOrderSub=insert into br_order_sub \
+						(product_price, order_product_amount) \
+					values \
+						(?, ?)											 
+						 

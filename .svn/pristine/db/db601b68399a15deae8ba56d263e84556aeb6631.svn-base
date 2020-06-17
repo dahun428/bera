@@ -1,0 +1,21 @@
+package com.br.service;
+
+import java.sql.SQLException;
+
+import com.br.dao.NoticeDao;
+import com.br.dto.NoticeDto;
+import com.br.vo.Notice;
+
+public class NoticeService {
+
+	NoticeDao noticeDao = new NoticeDao();
+	
+	public void insertNotice(Notice notice, String imagePath) throws SQLException {
+		int noticeNo = noticeDao.insertNotice(notice);
+		
+		if(noticeNo != 0 ) {
+			noticeDao.insertNoticeImagePath(noticeNo, imagePath);
+		}
+	}
+	
+}

@@ -1,0 +1,96 @@
+<%@page import="com.br.vo.Product"%>
+<%@page import="com.br.dao.ProductDao"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+</style>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+			<%
+				String position = "menu";
+				int productNo = NumberUtil.stringToInt(request.getParameter("productNo"));
+				ProductDao productDao = new ProductDao();
+				Product product = productDao.getProductByProductNo(productNo);
+			%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<div class="container">
+				<!-- product detail -->
+				<div class="row">
+					<div class="col-12">
+						<div class="content-header text-center">
+							<span class="color-pink"><i class="fas fa-ice-cream fa-5x"></i></span>
+							<!-- product name -->
+							<h4 class="display-4 text-center"><%=product.getName()%></h4>
+							<!-- product detail -->
+							<p class="color-gray-pink"><%=product.getExplain()%></p>
+						</div>
+					</div>
+					<%if ("ICECREAM".equals(product.getCategory())) {%>
+					<div class="col-12">
+						<div class="product-detail-img text-center">
+							<!-- product img -->
+							<img src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM":"CAKE"%>/<%=product.getImagePath() %>" alt="" />
+							
+						</div>
+						<div class="product-con-img text-center">
+							<img src="../image/ICECREAM/icecream-bottom.png" alt="" />
+						</div>
+						<div class="product-detail-btn">
+							<!-- 구매하기 버튼 get 방식으로 url 보내기 -->
+							<a href="../order/detail.jsp?productNo=<%=productNo%>"
+								type="button" class="btn btn-primary btn-lg">구매하기</a>
+						</div>
+					</div>
+					<%} else{%>
+					<div class="col-12">
+						<div class="text-center">
+							<!-- product img -->
+							<img src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM":"CAKE"%>/<%=product.getImagePath()%>" alt="" />
+						</div>
+						
+						<div class="product-detail-btn-cake">
+							<!-- 구매하기 버튼 get 방식으로 url 보내기 -->
+							<a href="../order/detail.jsp?productNo=<%=productNo%>"
+								type="button" class="btn btn-primary btn-lg">구매하기</a>
+						</div>
+					</div>
+					<%} %>
+					<div class="col-12">
+						<hr />
+						<div class="pack-info">
+							<img src="../image/bera-pack-info.JPG" alt="" />
+						</div>
+					</div>
+					<!-- review start -->
+					<%@ include file="../review/list.jsp"%>
+					<!-- review end -->
+
+					<div class="col-12 list-box">
+						<a href="list.jsp?category=<%=product.getCategory()%>"
+							class="btn btn-outline-primary btn-lg">목록</a>
+					<%if("0".equals(session.getAttribute("LOGINED_ADMIN"))){ %>
+                        <a href="modifyform.jsp?productNo=<%=productNo %>" class="btn btn-primary btn-lg">상품 수정</a>
+                <%} %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+</body>
+</html>

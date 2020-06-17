@@ -1,0 +1,46 @@
+<%@page import="com.br.service.NoticeService"%>
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="com.br.vo.Notice"%>
+<%@page import="com.br.dao.NoticeDao"%>
+<%@page import="com.br.utils.FileUtil"%>
+<%@page import="java.util.Map"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+
+
+	//저장할 위치
+	//String directory = application.getInitParameter("saveDirectoryNotice");
+	//파일 유틸에서 업로드 기능 실행
+	//맵으로 변환된 파일 이름, 파라미터 이름
+	String url = this.getClass().getResource("").getPath(); 
+	String path = url.substring(1,url.indexOf(".metadata")) + "semi-project-master/WebContent/image/NOTICE";
+
+	String directory = path;
+	Map<String, String> fileMap = FileUtil.fileUploadExecute(request, directory);
+
+	//getparameter 대신 fileMap 에 있는 값을 가져온다.
+	String title = fileMap.get("title");
+	String content = fileMap.get("content");
+	String noticeValue = fileMap.get("noticeValue");
+	String imgPath = fileMap.get("fileRealName");
+	
+	//DB에 fileMap 에서 가져온 값 넣기
+	NoticeDao noticeDao = new NoticeDao();
+	Notice notice = new Notice();
+	notice.setTitle(title);
+	notice.setContent(content);
+	notice.setImportant(noticeValue);
+	
+	NoticeService noticeService = new NoticeService();
+	noticeService.insertNotice(notice, imgPath);
+	
+	
+	response.sendRedirect("list.jsp");
+
+
+
+
+%>

@@ -1,0 +1,21 @@
+<%@page import="com.br.vo.Basket"%>
+<%@page import="com.br.dao.OrderDao"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../common/logincheck.jsp" %>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	int productNo = NumberUtil.stringToInt(request.getParameter("productNo"));
+	int amount = NumberUtil.stringToInt(request.getParameter("count"));
+	
+	OrderDao orderDao = new OrderDao();
+	Basket basket = new Basket();
+	basket.setUserId(loginedUserId);
+	basket.setProductNo(productNo);
+	
+	orderDao.addShoppingBasket(basket);
+	
+	response.sendRedirect("mypage-cart.jsp");
+%>

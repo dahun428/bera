@@ -1,0 +1,9 @@
+order.addShoppingBasket=insert into br_shopping_basket \
+						(user_id, product_no) \
+						values(?, ?)
+						
+order.getAllBasketByUserId=select image_path, name, price, discount_price, point \
+						   from br_products A, br_product_image_path B, br_shopping_basket C \
+						   where a.product_no = b.product_no \
+						   and a.product_no = c.product_no \
+						   and user_id = ?

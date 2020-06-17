@@ -1,0 +1,64 @@
+<%@page import="com.br.service.NoticeService"%>
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="com.br.vo.Notice"%>
+<%@page import="com.br.dao.NoticeDao"%>
+<%@page import="com.br.utils.FileUtil"%>
+<%@page import="java.util.Map"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+
+
+	String uploadfile = request.getParameter("uploadfile");
+
+	//저장할 위치
+	String directory = "C:\\project\\web_workspace\\semi-project\\WebContent\\image\\NOTICE";
+	
+	//파일 유틸에서 업로드 기능 실행
+	FileUtil.fileUploadExecute(request, directory);
+	
+	//맵으로 변환된 파일 이름, 파라미터 이름
+	Map<String, String> fileMap = FileUtil.fileUploadExecute(request, directory);
+	
+	
+	
+	String title = fileMap.get("title");
+	String content = fileMap.get("content");
+	String noticeValue = fileMap.get("noticeValue");
+	String imgPath = fileMap.get("fileRealName");
+	
+	
+	
+	
+	
+	System.out.println( "title :" + title);
+	System.out.println( "content :" + content);
+	System.out.println( "noticeValue :" + noticeValue);
+	System.out.println( "imgPath : " + imgPath);
+	
+	//while(keys.hasNext()){
+	//	String key = keys.next();
+	//	
+	//	System.out.println(String.format("키 : %s, 값 : %s", key, fileMap.get(key)));
+	//}
+	//System.out.println("directory : "+directory);
+	
+	NoticeDao noticeDao = new NoticeDao();
+	Notice notice = new Notice();
+	notice.setTitle(title);
+	notice.setContent(content);
+	notice.setImportant(noticeValue);
+	
+	NoticeService noticeService = new NoticeService();
+	noticeService.insertNotice(notice, imgPath);
+	
+	//System.out.println(notice);
+	
+	//response.sendRedirect("list.jsp");
+
+
+
+
+%>

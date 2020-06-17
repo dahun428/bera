@@ -1,0 +1,18 @@
+<%@page import="com.br.utils.BRStatics"%>
+<%@page import="java.io.File"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.Paths"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+String userAgent = request.getHeader("User-Agent");
+String path = "";
+if(userAgent.indexOf("Windows")>0){
+	//윈도우인 경우
+	path = BRStatics.ROOT_PATH;
+} else if(userAgent.indexOf("Mac")>0){
+	path = BRStatics.ROOT_PATH_FOR_MAC;
+	//맥인 경우
+}
+
+%>

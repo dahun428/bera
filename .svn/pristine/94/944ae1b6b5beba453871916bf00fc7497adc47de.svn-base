@@ -1,0 +1,197 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+</style>
+
+<body onload="adminCheck(<%="1".equals(session.getAttribute("LOGINED_ADMIN"))%>)">
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+			<%
+				String category = request.getParameter("category");
+				String position = "menu";
+			%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-6">
+
+						<h6></h6>
+						<div class="card">
+							<div class="card-header">상품추가</div>
+							<div class="card-body">
+								<form action="productRegister.jsp" enctype="multipart/form-data"
+									method="post">
+									<!-- onsubmit="inputcheck(event)"> -->
+									<input type="text" name="category" value="<%=category%>" hidden>
+									<div class="form-group" id="name-input">
+										<label for="product-name">상품명</label> <input type="text"
+											name="name" id="product-name" class="form-control">
+									</div>
+									<div class="form-group" id="price-input">
+										<label for="product-price">상품가격</label> <input type="number"
+											name="price" id="product-price" class="form-control">
+									</div>
+									<div class="form-group" id="discount-input">
+										<label for="product-discount-price">상품 할인가</label> <input
+											type="text" name="discountPrice" id="product-discount-price"
+											class="form-control">
+									</div>
+									<div class="form-group" id="point-input">
+										<label for="product-point">상품 포인트</label> <input type="text"
+											name="point" id="product-point" class="form-control">
+									</div>
+									<div class="form-group" id="amount-input">
+										<label for="product-amount">입고</label> <input type="text"
+											name="point" id="product-amount" class="form-control">
+									</div>
+									<div class="form-group" id="tag-input">
+										<label for="product-tag">태그 <small
+											style="color: crimson">*태그가 여러개인 경우에는 ,로 구분해주세요</small></label> <input
+											type="text" name="tag" class="form-control" id="product-tag">
+									</div>
+									<div class="form-group" id="explain-input">
+										<label for="product-explain">상품 설명</label>
+										<textarea name="explain" id="product-explain" cols="30"
+											rows="10" class="form-control"></textarea>
+									</div>
+									<div class="form-group" id="image-input">
+										<label for="">상품 이미지</label> <input type="file" name="image"
+											id="product-image" class="form-control">
+									</div>
+									<div class="text-center">
+										<a href="#" class="btn btn-secondary">돌아가기</a>
+										<button type="submit" class="btn btn-primary">상품 등록
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function adminCheck(isNotAdmin){
+			if(isNotAdmin){
+				
+			}	
+		}
+		function inputcheck(event) {
+			clearErrorField()
+			var isPassed = true
+			var nameField = document.querySelector("#product-name")
+			var priceField = document.querySelector("#product-price")
+			var discountPriceField = document
+					.querySelector("#product-discount-price")
+			var pointField = document.querySelector("#product-point")
+			var tagField = document.querySelector("#product-tag")
+			var amountField = document.querySelector("#product-amount")
+			var imageField = document.querySelector("#product-image")
+			var explainField = document.querySelector("#product-explain")
+
+			if (!nameField) {
+				document.querySelector("#name-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+			if (!priceField) {
+				document.querySelector("#price-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+			if (!discountPriceField) {
+				document.querySelector("#discount-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+			if (!pointField) {
+				document.querySelector("#point-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+			if (!tagField) {
+				document.querySelector("#tag-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+			if (!amountField) {
+				document.querySelector("#amount-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+			if (!imageField) {
+				document.querySelector("#image-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+			if (!explainField) {
+				document.querySelector("#explain-input").classList
+						.add("field-error")
+				isPassed = false
+			}
+
+			if (!isPassed) {
+				event.preventDefault()
+			}
+		}
+
+		function clearErrorField() {
+			document.querySelectorAll(".form-group").forEach(function(curr) {
+				curr.classList.remove('field-error')
+			})
+		}
+	</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

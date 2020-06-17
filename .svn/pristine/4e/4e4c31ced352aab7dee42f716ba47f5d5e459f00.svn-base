@@ -1,0 +1,70 @@
+
+$(document).ready(function(){
+	
+	
+	$('#custom-nav').bind({
+		mouseenter: function() {
+			var $btn=$('.nav-sub');
+			if(!$btn.is(':animated')) $btn.slideDown(400);
+		},
+		mouseleave: function() {
+			$('.nav-sub').slideUp(400);
+		}
+	});
+	var count = 1;
+	$('#count-plus').click(function(){
+		var totalPrice = 0;
+		var price = $('#product-price').text();
+		
+		count++;
+		$('#count').val(count);
+		
+		totalPrice = count * price;
+		$('#product-total-price').text(totalPrice);
+	});
+	$('#count-minus').click(function(){
+		var totalPrice = 0;
+		var price = $('#product-price').text();
+
+		if(!(count == 0)){
+			count--;
+			$('#count').val(count);
+		}
+
+		totalPrice = count * price;
+		$('#product-total-price').text(totalPrice);
+		
+	});
+	var sel_file;
+	$('#imageUpload').on('change', handleImgFileSelect);
+	$("#imageUpload").on('change', function(){
+		var fileName;
+		if(window.FileReader){
+			fileName = $(this)[0].files[0].name;
+		} else {
+			fileName = $(this).val().split('/').pop().split('\\').pop();
+		}
+		$("label[for = 'imageUpload' ]").text(fileName);
+	});
+});
+
+//파일 미리보기 기능
+function handleImgFileSelect(e){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+			alert('확장자는 이미지만 가능합니다.');
+			return;
+		}
+		sel_file = f;
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('#change-image').attr("src", e.target.result);
+		}
+		reader.readAsDataURL(f);
+		
+	});
+}
+
