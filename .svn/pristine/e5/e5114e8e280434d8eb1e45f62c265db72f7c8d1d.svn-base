@@ -1,0 +1,35 @@
+review.insertReview=insert into br_reviews \
+					 (review_no, product_no, user_id, title, content) \
+					 values \
+					 (SEQ_REVIEW_NO.nextval, ?, ?, ?, ?)
+					 
+review.getReviewsByProductNo=select a.review_no, user_id, title, content, image_path \
+                          from br_reviews a, br_reviews_image_path b \
+                          where product_no = ? \
+                          and a.review_no = b.review_no \
+                          order by reg_date desc
+                          
+review.updateReview=update br_reviews \
+					set \
+						review_title = ?, \
+						review_content = ?, \
+					where review_no = ?
+					
+review.deleteReview=update br_reviews \
+				  set \
+				  	deleted= 0 \
+				  where review_no = ?
+                          
+review.getallByproductNo=select product_no, image_path \
+						 from br_product_image_path
+						 
+review.getAllReviews=select review_no, product_no, order_no, user_id, title, content, reg_date, liked, image_path \
+					from br_reviews a, br_product_image_path b \
+					where a.review_no = b.review_no \
+					order by reg_date desc
+					
+review.insertReviewImagePath=insert into br_reviews_image_path \
+							(review_no, image_path) \
+							values \
+							(?, ?)
+review.insertReviewGetReviewNo=select SEQ_REVIEW_NO.currval as review_no from dual
