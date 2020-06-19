@@ -1,0 +1,342 @@
+package com.br.service;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.br.dao.EventDao;
+import com.br.dto.EventDto;
+
+public class EventService {
+
+	
+	EventDao eventDao = new EventDao();
+	
+	
+	
+	/**
+	 * 진행중인 썸네일
+	 * @return
+	 */
+	public List<EventDto> getEventProgressTypeThumbnail(){
+		List<EventDto> eventAll = eventDao.getEventProgress();
+		List<EventDto> events = new ArrayList<EventDto>();
+		for(EventDto eventSelect : eventAll) {
+			if("1".equals(eventSelect.getEventType())) {
+				EventDto event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+				events.add(event);
+			}
+		}
+		return events;
+	}
+	/**
+	 * 진행중인 컨텐츠
+	 * @return
+	 */
+	public List<EventDto> getEventProgressTypeContent(){
+		List<EventDto> eventAll = eventDao.getEventProgress();
+		List<EventDto> events = new ArrayList<EventDto>();
+		for(EventDto eventSelect : eventAll) {
+			if("0".equals(eventSelect.getEventType())) {
+				EventDto event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+				events.add(event);
+			}
+		}
+		return events;
+	}
+	/**
+	 * 진행중인 배너
+	 * @return
+	 */
+	public List<EventDto> getEventProgressTypeBanner(){
+		List<EventDto> eventAll = eventDao.getEventIsBannerProgress();
+		List<EventDto> events = new ArrayList<EventDto>();
+		for(EventDto eventSelect : eventAll) {
+			if("2".equals(eventSelect.getEventType())) {
+				EventDto event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+				events.add(event);
+			}
+		}
+		return events;
+	}
+	/**
+	 *  종료된 썸네일
+	 * @return
+	 */
+	public List<EventDto> getEventTerminatedTypeThumbnail(){
+		List<EventDto> eventAll = eventDao.getEventTerminated();
+		List<EventDto> events = new ArrayList<EventDto>();
+		for(EventDto eventSelect : eventAll) {
+			if("1".equals(eventSelect.getEventType())) {
+				EventDto event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+				events.add(event);
+			}
+		}
+		return events;
+	}
+	/**
+	 * 종료된 컨텐츠
+	 * @return
+	 */
+	public List<EventDto> getEventTerminatedTypeContent(){
+		List<EventDto> eventAll = eventDao.getEventTerminated();
+		List<EventDto> events = new ArrayList<EventDto>();
+		for(EventDto eventSelect : eventAll) {
+			if("0".equals(eventSelect.getEventType())) {
+				EventDto event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+				events.add(event);
+			}
+		}
+		return events;
+	}
+	/**
+	 *  종료된 배너
+	 * @return
+	 */
+	public List<EventDto> getEventTerminatedTypeBanner(){
+		List<EventDto> eventAll = eventDao.getEventTerminated();
+		List<EventDto> events = new ArrayList<EventDto>();
+		for(EventDto eventSelect : eventAll) {
+			if("2".equals(eventSelect.getEventType())) {
+				EventDto event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+				events.add(event);
+			}
+		}
+		return events;
+	}
+	/**
+	 * eventNo 에 해당하는  이벤트 컨텐츠 객체 하나를 반환
+	 * @param eventNo
+	 * @return
+	 */
+	public EventDto getProgressEventContentByNo(int eventNo) {
+		List<EventDto> eventAll = eventDao.getAllEventByNo(eventNo);
+		EventDto event = null;
+		for(EventDto eventSelect : eventAll) {
+			if("0".equals(eventSelect.getEventType())) {
+				event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+			}
+		}
+		return event;
+	}
+	/**
+	 * eventNo 에 해당하는  이벤트 썸네일 객체 하나를 반환
+	 * @param eventNo
+	 * @return
+	 */
+	public EventDto getProgressEventThumbnailByNo(int eventNo) {
+		List<EventDto> eventAll = eventDao.getAllEventByNo(eventNo);
+		EventDto event = null;
+		for(EventDto eventSelect : eventAll) {
+			if("1".equals(eventSelect.getEventType())) {
+				event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+			}
+		}
+		return event;
+	}
+	/**
+	 * eventNo 에 해당하는  이벤트 배너 객체 하나를 반환
+	 * @param eventNo
+	 * @return
+	 */
+	public EventDto getProgressEventBannerByNo(int eventNo) {
+		List<EventDto> eventAll = eventDao.getAllEventByNo(eventNo);
+		EventDto event = null;
+		for(EventDto eventSelect : eventAll) {
+			if("2".equals(eventSelect.getEventType())) {
+				event = new EventDto();
+				event.setNo(eventSelect.getNo());
+				event.setTitle(eventSelect.getTitle());
+				event.setContent(eventSelect.getContent());
+				event.setStartDate(eventSelect.getStartDate());
+				event.setEndDate(eventSelect.getEndDate());
+				event.setEnded(eventSelect.isEnded());
+				event.setBanner(eventSelect.isBanner());
+				event.setImagePath(eventSelect.getImagePath());
+				event.setEventType(eventSelect.getEventType());
+			}
+		}
+		return event;
+	}
+	public void updateEvent(EventDto event) throws SQLException{
+		
+		if(event.getContentImagePath() != null) {
+			event.setImagePath(event.getContentImagePath());
+			event.setEventType("0");
+			eventDao.updateEventImagePath(event);
+		}
+		if(event.getThumbnailImagePath() != null) {
+			event.setImagePath(event.getThumbnailImagePath());
+			event.setEventType("1");
+			eventDao.updateEventImagePath(event);
+		}
+		if(event.getBannerImagePath() != null) {
+			event.setImagePath(event.getBannerImagePath());
+			event.setEventType("2");
+			eventDao.updateEventImagePath(event);
+		}
+		eventDao.updateEventDto(event);
+		
+	}
+	
+	
+	public void insertEvent(EventDto event) throws SQLException{
+		
+		int eventNo = 0;
+		
+		if(event != null) {
+			eventNo = eventDao.insertEvent(event);
+		}
+		if(eventNo == 0) {
+			return;
+		}
+		if(event.getContentImagePath() != null) {
+			eventDao.insertEventImagePath(eventNo, event.getContentImagePath(), "0");
+		}
+		if(event.getThumbnailImagePath() != null) {
+			eventDao.insertEventImagePath(eventNo, event.getThumbnailImagePath(), "1");
+		}
+		if(event.getBannerImagePath() != null) {
+			eventDao.insertEventImagePath(eventNo, event.getBannerImagePath(), "2");
+		}
+		
+	}
+	public EventDto getEventImageByNo(int eventNo, String eventType) {
+		
+		EventDto event = null;
+		
+		if("content".equals(eventType)) {
+			event = eventDao.getEventContentByNo(eventNo);
+		} else if ("thumbnail".equals(eventType)) {
+			event = eventDao.getEventThumbnailByNo(eventNo);
+		} else if ("banner".equals(eventType)) {
+			event = eventDao.getEventBannerByNo(eventNo);
+		}
+		
+		return event;
+	}
+	
+	public List<EventDto> getAllEventThumbnail(){
+		return eventDao.getAllEventThumbnail();
+	}
+	public EventDto getEventContentByNo(int eventNo) {
+		return eventDao.getEventContentByNo(eventNo);
+	}
+	public void deleteEventImage(int eventNo, String imagePath) {
+		eventDao.deleteEventImage(eventNo, imagePath);
+	}
+	/**
+	 * eventNo 값을 받아서 EventDto 객체를 반환
+	 * 반환된 값에는 contentImagePath, thumbnailImagePath, bannerImagePath 값이 각각 들어 있으며
+	 * null 일경우에는 해당 이미지를 보여주지 않는다.
+	 * @param eventNo
+	 * @return
+	 */
+	public EventDto getEventByNo(int eventNo) {
+		List<EventDto> events = eventDao.getEventByNo(eventNo);
+		
+		String contentImagePath = null;
+		String thumbnailImagePath = null;
+		String bannerImagePath = null;
+		
+		EventDto event = null;
+		for(EventDto e : events) {
+			event = new EventDto();
+			event.setNo(e.getNo());
+			event.setTitle(e.getTitle());
+			event.setContent(e.getContent());
+			event.setStartDate(e.getStartDate());
+			event.setEndDate(e.getEndDate());
+			event.setEnded(e.isEnded());
+			event.setBanner(e.isBanner());
+			if("0".equals(e.getEventType())){
+				contentImagePath = e.getImagePath();
+			} else if ("1".equals(e.getEventType())){
+				thumbnailImagePath = e.getImagePath();
+			} else if ("2".equals(e.getEventType())) {
+				bannerImagePath = e.getImagePath();
+			} else {
+				break;
+			}
+		}
+		event.setContentImagePath(contentImagePath);
+		event.setThumbnailImagePath(thumbnailImagePath);
+		event.setBannerImagePath(bannerImagePath);
+		System.out.println(event);
+		return event;
+	}
+	
+	
+}
