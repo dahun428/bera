@@ -13,7 +13,6 @@
 	EventService eventService = new EventService();
 	EventDto event = eventService.getEventByNo(eventNo);
 
-	System.out.println("banner image path :"+event.getBannerImagePath());
 	SimpleDateFormat year = new SimpleDateFormat("yyyy");
 	SimpleDateFormat month = new SimpleDateFormat("M");
 	SimpleDateFormat day = new SimpleDateFormat("d");
@@ -66,7 +65,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="4"><input type="text" class="form-control" id="event-title"
+									<td colspan="4"><input type="text" class="form-control"
 										placeholder="제목을 입력해주세요" name="title" maxlength="50" value="<%=event.getTitle() %>" /></td>
 								</tr>
 								<tr>
@@ -171,19 +170,6 @@
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="4">
-										<div>
-											<input type="radio" id="event-manager-event" name="event-manager" <%=StringUtils.isEmpty(event.getThumbnailImagePath()) ? "" : "checked" %> disabled="disabled"/><span>이벤트관리</span>
-											<input type="radio" id="event-manager-banner" name="event-manager" <%=StringUtils.isEmpty(event.getThumbnailImagePath()) ? "checked" : "" %> disabled="disabled"/><span>배너 관리</span>
-										</div>
-									</td>
-								</tr>
-					<!-- thumbnail , content null check -->
-					<%
-						if(event.getThumbnailImagePath() != null){
-										
-					%>
 								<tr id="event-thumbnail">
 									<td colspan="4">
 										<div class="form-check form-check-inline">
@@ -214,7 +200,6 @@
 												<input type="file" class="custom-file-input" name="thumbnail"
 													id="event-imageUpload-thumbnail" disabled="disabled" />
 													<label for="event-imageUpload-thumbnail" class="custom-file-label"><%=event.getThumbnailImagePath() %></label>
-												<input type="hidden" name="thumbnailImagePath" value="<%=event.getThumbnailImagePath() %>" />
 											</div>
 										</div>
 									</td>
@@ -259,7 +244,6 @@
 												<input type="file" class="custom-file-input" name="content"
 													id="event-imageUpload-content" />
 													<label for="event-imageUpload-content" class="custom-file-label"><%=event.getContentImagePath() %></label>
-												<input type="hidden" name="contentImagePath" value="<%=event.getContentImagePath() %>" />
 											</div>
 										</div>
 									</td>
@@ -275,11 +259,6 @@
 								<%
 									}
 								%>
-					<%
-						} else if(event.getBannerImagePath() != null){
-							
-					%>	
-								
 								
 								<tr id="event-banner">
 									<td colspan="4">
@@ -291,7 +270,6 @@
 										</div>
 									</td>
 								</tr>
-								
 								<%
 									if (event.getBannerImagePath() != null) {
 								%>
@@ -300,9 +278,8 @@
 										<div class="input-group">
 											<div class="custom-file">
 												<input type="file" class="custom-file-input" name="banner"
-													id="event-imageUpload-banner"/>
+													id="event-imageUpload-banner" />
 													<label for="event-imageUpload-banner" class="custom-file-label"><%=event.getBannerImagePath() %></label>
-												<input type="hidden" name="bannerImagePath" value="<%=event.getBannerImagePath() %>" />
 											</div>
 										</div>
 									<%
@@ -327,9 +304,6 @@
 								<%
 									}
 								%>
-				<%
-						}
-				%>
 								<tr>
 									<td colspan="4"><textarea class="form-control"
 											placeholder="내용을 입력해주세요" name="content" maxlength="2048"
@@ -337,12 +311,11 @@
 								</tr>
 							</tbody>
 						</table>
-						
 						<input type="hidden" name="eventNo" value="<%=event.getNo() %>" />
 						<div class="form-btn text-right">
 							<button onclick="history.go(-1);" type="button"
 								class="btn btn-secondary">돌아가기</button>
-							<button type="button" class="btn btn-primary" id="event-form-btn">수정완료</button>
+							<button type="submit" class="btn btn-primary">수정완료</button>
 						</div>
 					</form>
 				</div>

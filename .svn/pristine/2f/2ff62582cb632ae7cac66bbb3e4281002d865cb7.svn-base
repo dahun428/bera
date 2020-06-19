@@ -6,7 +6,7 @@
 <%
 
 	EventService eventService = new EventService();
-	List<EventDto> events = eventService.getEventProgressTypeThumbnail();
+	List<EventDto> events = eventService.getAllEventThumbnail();
 
 %>
 	
@@ -49,13 +49,7 @@
 								<!-- event image -->
 									<div class="card-img">
 										<a href="detail.jsp?no=<%=event.getNo()%>">
-										<%
-										if(event.getImagePath() != null){
-										%>
 											<img style="max-height: 280px;" src="../image/EVENT/<%=event.getImagePath() %>" alt="" class="card-img-top"/>
-										<%
-										}
-										%>
 										</a>
 									</div>
 										<div class="card-body">

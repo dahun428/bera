@@ -214,7 +214,6 @@
 												<input type="file" class="custom-file-input" name="thumbnail"
 													id="event-imageUpload-thumbnail" disabled="disabled" />
 													<label for="event-imageUpload-thumbnail" class="custom-file-label"><%=event.getThumbnailImagePath() %></label>
-												<input type="hidden" name="thumbnailImagePath" value="<%=event.getThumbnailImagePath() %>" />
 											</div>
 										</div>
 									</td>
@@ -259,7 +258,6 @@
 												<input type="file" class="custom-file-input" name="content"
 													id="event-imageUpload-content" />
 													<label for="event-imageUpload-content" class="custom-file-label"><%=event.getContentImagePath() %></label>
-												<input type="hidden" name="contentImagePath" value="<%=event.getContentImagePath() %>" />
 											</div>
 										</div>
 									</td>
@@ -300,9 +298,8 @@
 										<div class="input-group">
 											<div class="custom-file">
 												<input type="file" class="custom-file-input" name="banner"
-													id="event-imageUpload-banner"/>
+													id="event-imageUpload-banner" />
 													<label for="event-imageUpload-banner" class="custom-file-label"><%=event.getBannerImagePath() %></label>
-												<input type="hidden" name="bannerImagePath" value="<%=event.getBannerImagePath() %>" />
 											</div>
 										</div>
 									<%
@@ -337,7 +334,6 @@
 								</tr>
 							</tbody>
 						</table>
-						
 						<input type="hidden" name="eventNo" value="<%=event.getNo() %>" />
 						<div class="form-btn text-right">
 							<button onclick="history.go(-1);" type="button"

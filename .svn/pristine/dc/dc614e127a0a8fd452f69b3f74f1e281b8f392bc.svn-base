@@ -45,7 +45,6 @@
 	String filename = UUID.randomUUID().toString()+"-" + new File(item.getName()).getName();
 	String name = paramMap.get("name");
 	String category = paramMap.get("category");
-	
 	int price = NumberUtil.stringToInt(paramMap.get("price"));
 	int point = NumberUtil.stringToInt(paramMap.get("amount"));
 	int amount = NumberUtil.stringToInt(paramMap.get("point"));
@@ -54,7 +53,6 @@
 	String explain = paramMap.get("explain");
 	
 	Product product = new Product();
-	product.setNo(0);
 	product.setName(name);
 	product.setPrice(price);
 	product.setPoint(point);
@@ -68,7 +66,7 @@
 	System.out.println(path+("ICECREAM".equals(category)? "ICECREAM/":"CAKE/")+filename);
 
 	ProductDao productDao = new ProductDao();
-	productDao.mergeProduct(product, tagVal);
+	productDao.insertProduct(product, tagVal);
 
 	response.sendRedirect("list.jsp?category="+category);
 

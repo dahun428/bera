@@ -1,10 +1,28 @@
 product.insertProduct = \
-{call insert_product (?,?,?,?,?,?,?,?,?,?)}
+{call insert_product (seq_product_no.nextval,?,?,?,?,?,?,?,?,?)}
+product.insertProductOld=\
+insert into br_products \
+(product_no,name,amount,price,point,discount_price,category,explain) \
+values \
+(seq_product_no.nextval,?,?,?,?,?,?,?)
+
+product.getProductNo=\
+select seq_product_no.currval as product_no \
+from dual
+
+product.insertImagePath=\
+insert into br_product_image_path \
+(product_no, image_path) \
+values \
+(?,?)
+
+product.insertProductTags=\
+insert into br_product_tag \
+(product_no, product_tag) \
+values \
+(?,?)
 
 product.updateProduct=\
-{call insert_product (?,?,?,?,?,?,?,?,?,?)}
-product.deleteProduct=\
-{call product_delete (?)}
 
 product.createProduc=\
 
@@ -40,17 +58,3 @@ from br_product_tag a \
 join br_products b on b.product_no = a.product_no \
 join br_product_image_path c on c.product_no = a.product_no \
 where a.product_tag = ?
-
-product.getProductForRank=\
-select product_no,name,image_path from(\
-    select a.product_no,a.name,a.image_path, b.ord_count \
-    from (select a.product_no, a.name, b.image_path \
-        from br_products a \
-        join br_product_image_path b on b.product_no = a.product_no \
-        where a.category = ? ) a \
-    join (select product_no, count(product_no) as ord_count \
-        from br_order_sub \
-        group by product_no) b on b.product_no = a.product_no \
-    order by ord_count desc \
-    ) \
-where rownum <= 6

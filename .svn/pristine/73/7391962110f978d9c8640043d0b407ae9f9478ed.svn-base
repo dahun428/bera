@@ -40,17 +40,3 @@ from br_product_tag a \
 join br_products b on b.product_no = a.product_no \
 join br_product_image_path c on c.product_no = a.product_no \
 where a.product_tag = ?
-
-product.getProductForRank=\
-select product_no,name,image_path from(\
-    select a.product_no,a.name,a.image_path, b.ord_count \
-    from (select a.product_no, a.name, b.image_path \
-        from br_products a \
-        join br_product_image_path b on b.product_no = a.product_no \
-        where a.category = ? ) a \
-    join (select product_no, count(product_no) as ord_count \
-        from br_order_sub \
-        group by product_no) b on b.product_no = a.product_no \
-    order by ord_count desc \
-    ) \
-where rownum <= 6

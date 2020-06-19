@@ -1,0 +1,239 @@
+<%@page import="com.br.dto.EventDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.br.service.EventService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	EventService eventService = new EventService();
+	List<EventDto> events = eventService.getEventProgressTypeThumbnail();
+	List<EventDto> banners = eventService.getEventProgressTypeBanner();
+	List<EventDto> endEvnets = eventService.getEventTerminatedTypeThumbnail();
+	List<EventDto> endBanners = eventService.getEventTerminatedTypeBanner();
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+</style>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+			<%
+				String position = "event";
+			%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 custom-box">
+						<h4 class="display-4 text-center">EVENT</h4>
+						<div class="title text-center">
+							<h5>이벤트 관리자 페이지 입니다.</h5>
+							<hr />
+						</div>
+						<div class="row">
+							<div class="col-12 event-progress">
+								<h3>진행중인 이벤트</h3>
+								<hr />
+
+								<div class="row">
+
+									<%
+										if (!events.isEmpty()) {
+											for (EventDto event : events) {
+									%>
+									<div class="col-3">
+										<div class="card">
+											<!-- event image -->
+											<div class="card-img">
+										<img
+													style="max-height: 280px;"
+													src="../image/EVENT/<%=event.getImagePath()%>" alt=""
+													class="card-img-top" />
+											</div>
+											<div class="card-body">
+												<!--  event title -->
+												<h5 class="card-title"><%=event.getTitle()%></h5>
+												<!--  event date -->
+												<p>
+													<span><%=event.getStartDate()%></span>~ <span><%=event.getEndDate()%></span>
+												</p>
+												<div>
+													<button class="btn btn-secondary" type="button">삭제</button>
+													<a href="modifyform.jsp?no=<%=event.getNo() %>" class="btn btn-primary">수정</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<%
+										}
+										} else {
+									%>
+									<div class="col-3">
+										<p>해당 이벤트가 존재하지 않습니다.</p>
+									</div>
+									<%
+										}
+									%>
+
+								</div>
+							</div>
+							<div class="col-12 event-terminated">
+								<h3>종료된 이벤트</h3>
+								<hr />
+								<div class="row">
+
+									<%
+										if (!endEvnets.isEmpty()) {
+											for (EventDto event : endEvnets) {
+									%>
+									<div class="col-3">
+										<div class="card">
+											<!-- event image -->
+											<div class="card-img">
+												<a href="detail.jsp?no=<%=event.getNo()%>"> <img
+													style="max-height: 280px;"
+													src="../image/EVENT/<%=event.getImagePath()%>" alt=""
+													class="card-img-top" />
+												</a>
+											</div>
+											<div class="card-body">
+												<!--  event title -->
+												<h5 class="card-title"><%=event.getTitle()%></h5>
+												<!--  event date -->
+												<p>
+													<span><%=event.getStartDate()%></span>~ <span><%=event.getEndDate()%></span>
+												</p>
+												<div>
+													<button class="btn btn-secondary" type="button">삭제</button>
+													<a href="modifyform.jsp?no=<%=event.getNo() %>" class="btn btn-primary">수정</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<%
+										}
+										} else {
+									%>
+
+									<div class="col-3">
+										<p>해당 이벤트가 존재하지 않습니다.</p>
+									</div>
+									<%
+										}
+									%>
+								</div>
+							</div>
+							<div class="col-12 event-progress-banner">
+								<h3>진행중인 배너</h3>
+								<hr />
+								<div class="row">
+
+									<%
+										if (!banners.isEmpty()) {
+											for (EventDto event : banners) {
+									%>
+									<div class="col-3">
+										<div class="card">
+											<!-- event image -->
+											<div class="card-img">
+												<img
+													style="max-height: 280px;"
+													src="../image/EVENT/<%=event.getImagePath()%>" alt=""
+													class="card-img-top" />
+											</div>
+											<div class="card-body">
+												<p>
+													<span><%=event.getStartDate()%></span>~ <span><%=event.getEndDate()%></span>
+												</p>
+												<div>
+													<button class="btn btn-secondary" type="button">삭제</button>
+													<a href="modifyform.jsp?no=<%=event.getNo() %>" class="btn btn-primary">수정</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<%
+										}
+										} else {
+									%>
+									<div class="col-3">
+										<p>해당 이벤트가 존재하지 않습니다.</p>
+									</div>
+
+									<%
+										}
+									%>
+
+
+								</div>
+							</div>
+							<div class="col-12 event-terminated-banner">
+								<h3>종료된 배너</h3>
+								<hr />
+								<div class="row">
+
+									<%
+										if (!endBanners.isEmpty()) {
+											for (EventDto event : endBanners) {
+									%>
+									<div class="col-3">
+										<div class="card">
+											<!-- event image -->
+											<div class="card-img">
+												<img
+													style="max-height: 280px;"
+													src="../image/EVENT/<%=event.getImagePath()%>" alt=""
+													class="card-img-top" />
+											</div>
+											<div class="card-body">
+												<p>
+													<span><%=event.getStartDate()%></span>~ <span><%=event.getEndDate()%></span>
+												</p>
+												<div>
+													<button class="btn btn-secondary" type="button">삭제</button>
+													<a href="modifyform.jsp?no=<%=event.getNo() %>" class="btn btn-primary">수정</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<%
+											}
+										} else {
+									%>
+									<div class="col-3">
+										<p>해당 이벤트가 존재하지 않습니다.</p>
+									</div>
+									<%
+										}
+									%>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 text-right">
+						<a href="eventform.jsp" class="btn btn-primary">글쓰기</a>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+</body>
+</html>

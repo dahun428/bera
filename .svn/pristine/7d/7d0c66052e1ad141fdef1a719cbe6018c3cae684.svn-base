@@ -53,14 +53,7 @@
 								<form action="<%=isModify ?"modifyRegister.jsp" :"productRegister.jsp" %>" enctype="multipart/form-data"
 									method="post">
 									<!-- onsubmit="inputcheck(event)"> -->
-									
-									<%if(isModify){ %>
-									<input type="number" name="productNo" value="<%=productNo %>" hidden>
-									<input type="text" name="imagePath" value="<%=product.getImagePath() %>" hidden>
-									<input type="text" name="category" value="<%=product.getCategory()%>" hidden>
-									<%}else{ %>
 									<input type="text" name="category" value="<%=category%>" hidden>
-									<%} %>
 									<div class="form-group" id="name-input">
 										<label for="product-name">상품명</label> <input type="text"
 											name="name" id="product-name" class="form-control" value="<%=isModify? product.getName():""%>">
@@ -75,8 +68,8 @@
 											class="form-control" value=<%=isModify?product.getDiscountPrice() : ""%>>
 									</div>
 									<div class="form-group" id="point-input">
-										<label for="product-point">상품 포인트</label> <input type="number"
-											name="point" id="product-point" class="form-control" value="<%=isModify?product.getPoint():""%>">
+										<label for="product-point">상품 포인트</label> <input type="text"
+											name="point" id="product-point" class="form-control" value="<%=isModify?product.getPoint():"" %>">
 									</div>
 									<div class="form-group" id="amount-input">
 										<label for="product-amount">입고</label> <input type="text"

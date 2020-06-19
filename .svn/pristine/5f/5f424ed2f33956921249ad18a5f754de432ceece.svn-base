@@ -171,14 +171,24 @@ $(document).ready(function(){
 				alert('컨텐츠 사진을 등록해주세요');
 				return;
 			}
-			
+			if(($('#event-imageUpload-thumbnail').val().length < 1)){
+				alert('썸네일 사진을 등록해주세요');
+				return;
+			}
+			if(($('#event-imageUpload-content').val().length < 1)){
+				alert('컨텐츠 사진을 등록해주세요');
+				return
+			}
 			
 		} else {
 			if(!$('#event-banner-checkbox').is(":checked")){
 				alert('배너 사진을 등록해주세요');
 				return;
 			}
-			
+			if(($('#event-imageUpload-banner').val().length < 1)){
+				alert('배너 사진을 등록해주세요');
+				return;
+			}
 		}
 		if(!$('input[name="content"]')){
 			alert('내용을 입력해주세요');

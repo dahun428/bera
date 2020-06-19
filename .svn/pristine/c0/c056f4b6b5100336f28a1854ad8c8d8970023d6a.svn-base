@@ -24,21 +24,19 @@ public class ProductDao {
 	 * 
 	 * @param product
 	 */
-	public void mergeProduct(Product product, String tagValue) throws SQLException {
+	public void insertProduct(Product product, String tagValue) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
 		CallableStatement cstmt = connection.prepareCall(QueryUtil.getSQL("product.insertProduct"));
 		
-		
-		cstmt.setInt(1, product.getNo());
-		cstmt.setString(2, product.getName());
-		cstmt.setInt(3, product.getPrice());
-		cstmt.setInt(4, product.getAmount());
-		cstmt.setInt(5, product.getPoint());
-		cstmt.setInt(6, product.getDiscountPrice());
-		cstmt.setString(7, product.getCategory());
-		cstmt.setString(8, product.getExplain());
-		cstmt.setString(9, product.getImagePath());
-		cstmt.setString(10, tagValue);
+		cstmt.setString(1, product.getName());
+		cstmt.setInt(2, product.getPrice());
+		cstmt.setInt(3, product.getAmount());
+		cstmt.setInt(4, product.getPoint());
+		cstmt.setInt(5, product.getDiscountPrice());
+		cstmt.setString(6, product.getCategory());
+		cstmt.setString(7, product.getExplain());
+		cstmt.setString(8, product.getImagePath());
+		cstmt.setString(9, tagValue);
 		cstmt.executeUpdate();
 		
 		cstmt.close();
@@ -144,27 +142,12 @@ public class ProductDao {
 		return product;
 	}
 
-	public ArrayList<Product> getProductForRank(String category) throws SQLException{
-		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("product.getProductForRank"));
-		
-		pstmt.setString(1, category);
-		
-		ResultSet rs = pstmt.executeQuery();
-		products = new ArrayList<Product>();
-		while(rs.next()) {
-			int no = rs.getInt("product_no");
-			String name = rs.getString("name");
-			String imagePath = rs.getString("image_path");
-			Product product = new Product();
-			product.setNo(no);
-			product.setName(name);
-			product.setImagePath(imagePath);
-			products.add(product);
-		}
-		return products;
+	/**
+	 * 
+	 * @param product
+	 */
+	public void updateProduct(Product product) throws SQLException {
 	}
-	
 
 	public ArrayList<String> getProductTagByProductNo(int productNo) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();

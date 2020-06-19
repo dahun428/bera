@@ -65,7 +65,7 @@
 						<h5>회원님의 소중한 결제 감사합니다.</h5>
 						<p>언제나 고객님을 위해 최선을 다하겠습니다.</p>
 					</div>
-					<form action="orderregister.jsp" method="post" id="form-group" onsubmit="checkField(event); selectCheckbox()">
+					<form action="orderregister.jsp" method="post" id="form-group" onsubmit="checkField(event)">
 						<div class="row orderlist">
 							<div class="col-12">
 								<!-- creidt form start -->
@@ -117,7 +117,7 @@
 											</td>
 											<td>
 												<p>
-													<input type="number" value="<%=productAmount %>"
+													<input type="number" value="<%=productAmount %>" name="product-amount"
 														class="form-control text-right" id="amount-input"/>
 												</p>
 											</td>
@@ -127,9 +127,7 @@
 											<td>
 												<p id="product-point"><%=NumberUtil.numberWithComma(product.getPoint())%>p
 												</p>
-												<p id="add-hidden-td"></p>
 											</td>
-											
 										</tr>
 										<%
 											}
@@ -302,26 +300,6 @@
 			} else {
 				checkbox.checked = false;
 			}
-		}
-		
-		// 선택된 체크박스의 내용만 뽑아오기
-		function selectCheckbox() {
-			// form onsubmit 이벤트
-			// 체크된 row의 수량값을 받아오기
-			// innerHTML으로 input hidden 같은name으로 수량 저장하기
-			var checkbox = $('input[name=productNo]:checked');
-			var amountValue = "";
-			var addHidden = document.querySelector("#add-hidden-td");
-			var amountHtml = "";
-			
-			checkbox.each(function(i) {
-				var tr = checkbox.parent().parent().eq(i);
-				var td = tr.children();
-				var amountValue = td.eq(3).children().children().val();	// 체크된 상품별 수량
-				
-				amountHtml += "<input type='hidden' name='product-amount' value=" + amountValue + ">"
-			});
-			addHidden.innerHTML = amountHtml;
 		}
 		
 		/* 실시간 변경 

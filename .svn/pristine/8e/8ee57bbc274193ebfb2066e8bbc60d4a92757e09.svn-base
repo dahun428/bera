@@ -144,27 +144,12 @@ public class ProductDao {
 		return product;
 	}
 
-	public ArrayList<Product> getProductForRank(String category) throws SQLException{
-		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("product.getProductForRank"));
-		
-		pstmt.setString(1, category);
-		
-		ResultSet rs = pstmt.executeQuery();
-		products = new ArrayList<Product>();
-		while(rs.next()) {
-			int no = rs.getInt("product_no");
-			String name = rs.getString("name");
-			String imagePath = rs.getString("image_path");
-			Product product = new Product();
-			product.setNo(no);
-			product.setName(name);
-			product.setImagePath(imagePath);
-			products.add(product);
-		}
-		return products;
+	/**
+	 * 
+	 * @param product
+	 */
+	public void updateProduct(Product product) throws SQLException {
 	}
-	
 
 	public ArrayList<String> getProductTagByProductNo(int productNo) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();

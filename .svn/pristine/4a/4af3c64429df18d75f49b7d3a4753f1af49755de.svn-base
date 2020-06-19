@@ -74,33 +74,12 @@ public class EventDao {
 			}
 		}, eventNo);
 	}
-	public void updateEventDto(EventDto event) throws SQLException {
-		String query = QueryUtil.getSQL("event.updateEventDto");
-		Connection conn = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, event.getTitle());
-		pstmt.setString(2, event.getContent());
-		pstmt.setDate(3, new java.sql.Date(event.getStartDate().getTime()));
-		pstmt.setDate(4, new java.sql.Date(event.getEndDate().getTime()));
-		pstmt.setBoolean(5, event.isEnded());
-		pstmt.setBoolean(6, event.isBanner());
-		pstmt.setInt(7, event.getNo());
-		pstmt.executeUpdate();
-		
-		ConnectionUtil.close(conn, pstmt);
-	}
-	public void updateEventImagePath(EventDto event) throws SQLException {
-		String query = QueryUtil.getSQL("event.updateEventImagePath");
-		Connection conn = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, event.getImagePath());
-		pstmt.setInt(2, event.getNo());
-		pstmt.setString(3, event.getEventType());
-		pstmt.executeUpdate();
-		
-		
-		ConnectionUtil.close(conn, pstmt);
-	}
+//	public List<EventDto> getEventByEventNo(int eventNo){
+//		String query = QueryUtil.getSQL("event.getEventByEventNo");
+//		
+//		
+//	}
+//	
 	
 	public List<EventDto> getAllEvent() {
 		String query = QueryUtil.getSQL("event.getAllEvent");
@@ -151,9 +130,9 @@ public class EventDao {
 			return no;
 		} 
 		
-		ConnectionUtil.close(conn, pstmt);
+		ConnectionUtil.close(conn, pstmt, rs);
 		
-		return no;, rs
+		return no;
 	
 	}
 	/**

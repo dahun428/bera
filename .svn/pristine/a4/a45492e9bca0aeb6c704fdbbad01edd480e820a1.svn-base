@@ -17,6 +17,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+
+	ProductDao productDao = new ProductDao();
 	String path = "";
 	if (request.getHeader("User-Agent").indexOf("Windows") > 0) {
 		//윈도우인 경우
@@ -29,7 +31,7 @@
 	DiskFileItemFactory factory = new DiskFileItemFactory();
 	ServletFileUpload upload = new ServletFileUpload(factory);
 	upload.setHeaderEncoding("utf-8");
-
+	
 	List<FileItem> items = upload.parseRequest(request);
 	Map<String, String> paramMap = new HashMap<String,String>();
 	FileItem item = null;
@@ -42,19 +44,43 @@
 			item = fi;
 		}
 	}
-	String filename = UUID.randomUUID().toString()+"-" + new File(item.getName()).getName();
+	out.print(item.getName());
 	String name = paramMap.get("name");
 	String category = paramMap.get("category");
-	
 	int price = NumberUtil.stringToInt(paramMap.get("price"));
 	int point = NumberUtil.stringToInt(paramMap.get("amount"));
 	int amount = NumberUtil.stringToInt(paramMap.get("point"));
 	int discountPrice = NumberUtil.stringToInt(paramMap.get("discountPrice"));
+	String imagePath = paramMap.get("imagePath");
 	String tagVal = paramMap.get("tag");
 	String explain = paramMap.get("explain");
+	int productNo = NumberUtil.stringToInt(paramMap.get("productNo"));
+	String currentFileAbsPath = path+"/"+category+"/"+imagePath;
+	String filename = UUID.randomUUID().toString()+"-" + new File(item.getName()).getName();
 	
-	Product product = new Product();
-	product.setNo(0);
+	if(item.getName().isEmpty()){
+		out.print("no file");
+		out.print("<br>");
+	}else{
+		
+		File tempFile = new File(currentFileAbsPath);
+		System.gc();
+		System.runFinalization();
+		out.print(tempFile.exists());
+		if(tempFile.exists()){
+			System.out.println("file exists");
+		}
+		if(tempFile.delete()){
+			System.out.println("file delete success");
+		}else{
+			System.out.println("file delete fail");
+		}
+		item.write(new File(path+("ICECREAM".equals(category)? "ICECREAM/":"CAKE/")+filename));
+		imagePath = filename;
+	}
+	
+	Product product = productDao.getProductByProductNo(productNo);
+	product.setNo(productNo);
 	product.setName(name);
 	product.setPrice(price);
 	product.setPoint(point);
@@ -62,14 +88,17 @@
 	product.setAmount(amount);
 	product.setCategory(category);
 	product.setExplain(explain);
-	product.setImagePath(filename);
+	product.setImagePath(imagePath);
 	
-	item.write(new File(path+("ICECREAM".equals(category)? "ICECREAM/":"CAKE/")+filename));
+	
+	
+	out.print(product.toString());
+	//item.write(new File(path+("ICECREAM".equals(category)? "ICECREAM/":"CAKE/")+filename));
 	System.out.println(path+("ICECREAM".equals(category)? "ICECREAM/":"CAKE/")+filename);
-
-	ProductDao productDao = new ProductDao();
+	out.print("<br>");
+	out.print(tagVal);
+	
+	
 	productDao.mergeProduct(product, tagVal);
-
-	response.sendRedirect("list.jsp?category="+category);
-
+	response.sendRedirect("detail.jsp?productNo="+productNo);
 %>
