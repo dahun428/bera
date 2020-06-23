@@ -1,0 +1,49 @@
+user.getUserById=select user_id, name, password, phone, point, email, deleted, admin, reg_date \
+				 from br_users \
+				 where user_id = ?
+				 
+user.insertUser=insert into br_users \
+				(user_id, name, password, phone, email) \
+				values(?, ?, ?, ?, ?)	
+			
+user.getAllUsers=select user_id, name, password, phone, point, email, deleted, admin, reg_date \
+				 from br_users \
+				 
+user.deleteUser=update br_users \
+				set \
+					deleted = 0 \
+				where user_id = ?
+				
+user.infoChange=update br_users \
+				set \
+					password = ?, \
+					phone = ?, \
+					email = ? \
+				where user_id = ?
+				
+				
+user.getPointUseByUserId=select rownumber, user_id, used_point, used_date, used_reason \
+						 from(select rownum no, B.* \
+     						  from(select rownum as rownumber, A.* \
+           						   from(select user_id, used_point, used_date, used_reason \
+                						from br_users_pointuse \
+               							where user_id = ? \
+                						order by used_date asc) A \
+            					   order by rownumber desc) B \
+      						  where rownum <= ?) \
+						 where no >= ?
+						 
+user.getTotalPointRows=select count(*) as cnt from br_users_pointuse where user_id = ?
+						 
+user.addPointUse=insert into br_users_pointuse \
+				 (user_id, used_point, used_reason) \
+				 values(?, ?, ?)
+				 
+user.usingPointMinus=update br_users \
+					 set \
+					 	point = ? \
+					 where user_id = ?
+				 
+user.getAllPointUsesByUserId=select user_id, used_point, used_date, used_reason \
+				  	 		 from br_users_pointuse \
+				  	 		 where user_id = ?

@@ -18,18 +18,18 @@
 			<%@ include file="/common/header.jsp"%>
 		</div>
 		<div class="navi">
-		<%
-			String position="menu";
-		%>
+			<%
+				String position = "menu";
+			%>
 			<%@ include file="/common/navi.jsp"%>
 		</div>
 		<div class="body">
-		<%
-			int productNo = NumberUtil.stringToInt(request.getParameter("productNo"));
-		
-			ProductDao productDao = new ProductDao();
-			Product product = productDao.getProductByProductNo(productNo);
-		%>
+			<%
+				int productNo = NumberUtil.stringToInt(request.getParameter("productNo"));
+
+				ProductDao productDao = new ProductDao();
+				Product product = productDao.getProductByProductNo(productNo);
+			%>
 			<div class="container">
 				<div class="content-header text-center">
 					<h1 class="display-4">ORDER</h1>
@@ -40,52 +40,48 @@
 					<div class="row">
 						<div class="col-6 thumbnail">
 							<!-- produt img -->
-							<img src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM":"CAKE" %>/<%=product.getImagePath() %>"/>
+							<img
+								src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM" : "CAKE"%>/<%=product.getImagePath()%>" />
 							<!-- product img -->
 						</div>
 						<div class="col-6">
 							<div class="row">
 								<div class="col-12">
 									<!-- product title -->
-									<h3><%=product.getName() %></h3>
+									<h3><%=product.getName()%></h3>
 									<!-- product title -->
 									<hr />
 								</div>
 								<div class="col-12">
-									<form action="../order/credit.jsp" method="post" id="detail-form">
-									<input type="hidden" name="productNo" value="<%=productNo %>">
+									<form action="../order/credit.jsp" method="post"
+										id="detail-form">
+										<input type="hidden" name="productNo" value="<%=productNo%>">
 										<table class="table table-bordered text-left">
 											<tbody>
 												<tr>
 													<th>구성</th>
 													<!-- product name -->
-													<td><%=product.getName() %></td>
+													<td><%=product.getName()%></td>
 													<!-- product name -->
 												</tr>
 												<tr>
 													<th>판매가</th>
 													<td>
-														<!-- product price start -->
-														<span id="product-price"><strong><%=product.getPrice()-product.getDiscountPrice() %></strong></span>
-														<!-- product price end -->
-														<span>원</span>
-														<span>( 정상가</span>
-														<!-- product price start --> 
-														<span><%=product.getPrice() %></span> 
-														<!-- product price end -->
-														<span>원</span> 
-														<span>, </span> 
+														<!-- product price start --> <span id="product-price"><strong><%=product.getPrice() - product.getDiscountPrice()%></strong></span>
+														<!-- product price end --> <span>원</span> <span>(
+															정상가</span> <!-- product price start --> <span><%=product.getPrice()%></span>
+														<!-- product price end --> <span>원</span> <span>, </span>
 														<!-- before discount price ( product price - discount price) start -->
-														<span class="text-danger"><%=product.getDiscountPrice() %></span> 
-														<!-- before discount price end -->
-														<span class="text-danger">원</span> 
-														<span><i class="fas fa-arrow-down text-danger"></i> )</span>
+														<span class="text-danger"><%=product.getDiscountPrice()%></span>
+														<!-- before discount price end --> <span
+														class="text-danger">원</span> <span><i
+															class="fas fa-arrow-down text-danger"></i> )</span>
 													</td>
 												</tr>
 												<tr>
 													<th>적립포인트</th>
 													<!-- point start -->
-													<td><strong><%=product.getPoint() %>p</strong></td>
+													<td><strong><%=product.getPoint()%>p</strong></td>
 													<!-- point end -->
 												</tr>
 												<tr>
@@ -93,40 +89,60 @@
 													<td>
 														<div class="row">
 															<div class="col-4">
-															<!-- product count -->
+																<!-- product count -->
 																<input type="number" value="1" name="amount"
-																	class="form-control" id="count"/>
-															<!-- product count -->
+																	class="form-control" id="count" />
+																<!-- product count -->
 															</div>
 															<div class="col-8 offeset-4">
-																<button type="button" class="btn btn-outline-primary btn-sm" id="count-plus"><i class="fas fa-plus"></i></button>
-																<button type="button" class="btn btn-outline-primary btn-sm" id="count-minus"><i class="fas fa-minus"></i></button>
+																<button type="button"
+																	class="btn btn-outline-primary btn-sm" id="count-plus">
+																	<i class="fas fa-plus"></i>
+																</button>
+																<button type="button"
+																	class="btn btn-outline-primary btn-sm" id="count-minus">
+																	<i class="fas fa-minus"></i>
+																</button>
 															</div>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<th>총상품금액</th>
-													<td>
-														<span id="product-total-price"><%=product.getPrice()-product.getDiscountPrice() %></span>
-														<span>원</span>
-													</td>
+													<td><span id="product-total-price"><%=product.getPrice() - product.getDiscountPrice()%></span>
+														<span>원</span></td>
 												</tr>
 											</tbody>
 										</table>
-									<hr />
-									<div class="col-12 text-left">
-									<!-- submit -->
-										<button type="button" class="btn btn-primary btn-lg" onclick="check('credit.jsp?type=one')">주문하기</button>
-										<button type="button" class="btn btn-secondary btn-lg" onclick="check('../user/mycart.jsp')">장바구니</button>	
-									<!-- submit -->
-									<!-- likes -->
-										<button type="button" class="btn btn-outline-primary">
-											<i class="fas fa-heart"></i>
-										</button>
-									<!-- likes -->
-									</div>
+										<hr />
+										<div class="col-12 text-left">
+											<!-- submit -->
+											<button type="button" class="btn btn-primary btn-lg"
+												onclick="check('credit.jsp?type=one')">주문하기</button>
+											<button type="button" class="btn btn-secondary btn-lg"
+												onclick="check('../user/mycart.jsp')">장바구니</button>
+											<!-- submit -->
+											<!-- likes -->
+											<button type="button" class="btn btn-outline-primary">
+												<i class="fas fa-heart"></i>
+											</button>
+											<!-- likes -->
+										</div>
 									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<div class="col-12 card">
+						<div class="row">
+							<div class="col-12 card">
+								<h4 class="card-header font-weight-bolder">상품 정보</h4>
+								<div class="card-body">
+									<h5 class="card-title text-left"><span>[제품명]</span><%=product.getName() %></h5>
+									<p class="card-text">With supporting text below as a
+										natural lead-in to additional content.</p>
+									<a href="#" class="btn btn-primary">Go somewhere</a>
 								</div>
 							</div>
 						</div>
@@ -138,7 +154,7 @@
 			<%@ include file="/common/footer.jsp"%>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
 		function check(url) {
 			var form = document.getElementById("detail-form");

@@ -59,7 +59,7 @@ public class NoticeService {
 		noticeDao.updateNotice(notice);
 		//이미지 패스 값이 null이 아닐 경우에만 imgpath값을 notice_image DB에저장한다.
 		if(imagePath != null) {
-			noticeDao.updateNoticeImagePath(notice.getNo(), imagePath);
+			noticeDao.updateNoticeImage(notice.getNo(), imagePath);
 		}
 		//notice객체의 값을 DB에  update 한다.
 		
