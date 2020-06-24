@@ -1,0 +1,113 @@
+package com.br.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.br.utils.ConnectionUtil;
+import com.br.utils.QueryUtil;
+
+public class AdminDao {
+
+	/**
+	 * 총 매출 구하기
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getTotalSales() throws SQLException {
+		int totalSales = 0;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("admin.getTotalSales"));
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		totalSales = rs.getInt("total_payment");
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return totalSales;
+	}
+	
+	/**
+	 * 예) 2020년 6월 매출 구하기
+	 * @param year	예) 2020
+	 * @param month 예) 6 (반드시 String으로 받기)
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getSalesByMonth(int year, int month) throws SQLException {
+		int monthSales = 0;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("admin.getSalesByMonth"));
+		pstmt.setInt(1, year);
+		pstmt.setInt(2, month);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		monthSales = rs.getInt("total_payment");
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return monthSales;
+	}
+	
+	/**
+	 * 예) 2020년 6월 3주차 매출 구하기
+	 * @param year	예) 2020
+	 * @param month	예) 6
+	 * @param week	예) 3
+	 * @return
+	 * @throws SQLException
+	 */
+	
+	public int getSalesByWeek(int year, int month, int week) throws SQLException {
+		int weekSales = 0;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("admin.getSalesByWeek"));
+		pstmt.setInt(1, year);
+		pstmt.setInt(2, month);
+		pstmt.setInt(3, week);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		weekSales = rs.getInt("total_payment");
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return weekSales;
+	}
+	
+	/**
+	 * 예) 2020년 6월 23일 매출 구하기
+	 * @param year	예) 2020
+	 * @param month 예) 6
+	 * @param day	예) 23
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getSalesByDay(int year, int month, int day) throws SQLException {
+		int daySales = 0;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("admin.getSalesByDay"));
+		pstmt.setInt(1, year);
+		pstmt.setInt(2, month);
+		pstmt.setInt(3, day);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		daySales = rs.getInt("total_payment");
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return daySales;
+	}
+}

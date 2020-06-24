@@ -1,0 +1,14 @@
+$(document).ready(function(){
+	
+	var searchCategoryValue = $('#search-category-selectbox');
+	var searchNameValue = $('#search-name-value');
+	var searchHashTagValue = $('#search-hashtag-value');
+	
+	$('#search-btn').click(function(){
+		
+		
+		
+		
+	});
+	
+});

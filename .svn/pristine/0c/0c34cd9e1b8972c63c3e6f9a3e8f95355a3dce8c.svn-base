@@ -1,0 +1,113 @@
+review.insertReview=insert into br_reviews \
+					 (review_no, product_no, user_id, title, content) \
+					 values \
+					 (SEQ_REVIEW_NO.nextval, ?, ?, ?, ?)
+					 
+review.getReviewsByProductNo=select a.review_no, a.product_no, user_id, title, content, deleted, reg_date, image_path \
+                          from br_reviews a, br_reviews_image_path b \
+                          where product_no = ? \
+                          and deleted = 1 \
+                          and a.review_no = b.review_no \
+                          order by reg_date desc     
+review.getReviewsByProductNoPagination=select review_no, image_path \
+									  from( \
+									  select a.review_no, a.product_no, user_id, \
+									  title, content, deleted, reg_date, image_path, row_number() over(order by reg_date desc) rn \
+                          from br_reviews a, br_reviews_image_path b \
+                          where product_no = ? \
+                          and deleted = 1 \
+                          and a.review_no = b.review_no) \
+					      where rn >= ? and rn <= ? 
+review.getReviewsByProductNoPaginationTotalCount=select count(*) as cnt from br_reviews a, br_reviews_image_path b \
+                          where product_no = ? \
+                          and deleted = 1 \
+                          and a.review_no = b.review_no \
+                          
+review.getReviewUpdate=update br_reviews \
+					set \
+						title = ?, \
+						content = ? \
+					where review_no = ? 
+					
+review.getReviewUpdatePicture=update br_reviews_image_path \
+							set \
+								image_path = ? \
+							where review_no = ?
+							
+review.getReviewUserId=select a.review_no, user_id, title, content, reg_date, image_path \
+                          from br_reviews a, br_reviews_image_path b \
+                          where user_id = ? \
+                          and a.review_no = b.review_no \
+                          order by reg_date desc 
+
+
+review.deleteReview=update br_reviews \
+				  set \
+				  	deleted= '0' \
+				  where review_no = ?
+                          
+review.getallByproductNo=select product_no, image_path \
+						 from br_product_image_path
+						 
+review.getAllReviews=select a.review_no, a.product_no, order_no, user_id, title, content, reg_date, liked, image_path \
+					from BR_REVIEWS a, br_reviews_image_path b \
+					where a.review_no = b.review_no \
+					order by reg_date desc
+					
+review.insertReviewImagePath=insert into br_reviews_image_path \
+							(review_no, image_path) \
+							values \
+							(?, ?)
+review.insertReviewGetReviewNo=select SEQ_REVIEW_NO.currval as review_no from dual
+
+
+review.updateReviewImagePath=update br_reviews_image_path \
+							    set image_path = ? \
+							    where review_no = ? 
+							    
+reivew.getReviewImagePathByReviewNo=select a.review_no, a.image_path, b.title, b.content, \
+										   b.reg_date, \
+									from br_review_image_path a, br_reviews b \
+									where a.review_no = b.review_no \
+									and a.review_no = ? \
+									order by a.review_no desc
+							    
+
+review.getReviewNo=select a.review_no, a.user_id, a.product_no, a.title, a.content, a.reg_date, b.image_path \
+					from br_reviews a, br_reviews_image_path b \
+					where a.review_no = b.review_no \
+					and a.review_no = ? 
+					
+
+review.getReviewByNo=select a.review_no, a.title, a.content, a.reg_date, \
+					b.image_path \
+					from br_reviews a, br_reviews_image_path b \
+					where a.review_no = b.review_no(+) \
+					and a.review_no = ? 
+					
+					
+review.getReviewById=select user_id, title, content, reg_date, image_path \
+				 from br_reviews a, br_reviews_image_path b \
+				 where a.review_no = b.review_no \
+				 and user_id = ?
+
+
+	 
+review.getReviews=select review_no, product_no, title, content, \
+				  reg_date, image_path \
+                from (select A.review_no, A.product_no, A.title, A.content \
+                             B.image_path \
+                             row_number() over(order by reg_date desc) rn \
+                      from br_reviews A, br_reviews_image_path B \
+                      where A.review_no = B.review_no) \
+                where rn >= ? and rn <= ?
+
+review.getTotalRows=select count(*) cnt \
+				   from br_reviews
+                
+                
+                
+                
+                
+                
+                

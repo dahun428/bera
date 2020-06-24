@@ -1,0 +1,23 @@
+admin.getTotalSales = select point+payment total_payment \
+					  from (select sum(order_using_point) point, sum(order_payment) payment \
+       					    from br_order_main)
+       					   
+admin.getSalesByMonth = select point+payment total_payment \
+					    from (select sum(order_using_point) point, sum(order_payment) payment \
+      						  from br_order_main \
+      						  where to_char(reg_date, 'yyyy') = ? \
+      						  and to_char(reg_date, 'mm') = ?)
+      						  
+admin.getSalesByWeek = select point+payment total_payment \
+					   from (select sum(order_using_point) point, sum(order_payment) payment \
+      						 from br_order_main \
+      						 where to_char(reg_date, 'yyyy') = ? \
+      						 and to_char(reg_date, 'mm') = ? \
+      						 and to_char(reg_date,'W') = ?)
+      						 
+admin.getSalesByDay = select point+payment total_payment \
+					  from (select sum(order_using_point) point, sum(order_payment) payment \
+      						from br_order_main \
+      						where to_char(reg_date, 'yyyy') = ? \
+      						and to_char(reg_date, 'mm') = ? \
+      						and to_char(reg_date,'dd') = ?)

@@ -42,8 +42,10 @@
 					<div class="col-12">
 						<div class="product-detail-img text-center">
 							<!-- product img -->
-							<img src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM":"CAKE"%>/<%=product.getImagePath() %>" alt="" />
-							
+							<img
+								src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM":"CAKE"%>/<%=product.getImagePath() %>"
+								alt="" />
+
 						</div>
 						<div class="product-con-img text-center">
 							<img src="../image/ICECREAM/icecream-bottom.png" alt="" />
@@ -58,9 +60,11 @@
 					<div class="col-12">
 						<div class="text-center">
 							<!-- product img -->
-							<img src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM":"CAKE"%>/<%=product.getImagePath()%>" alt="" />
+							<img
+								src="../image/<%="ICECREAM".equals(product.getCategory()) ? "ICECREAM":"CAKE"%>/<%=product.getImagePath()%>"
+								alt="" />
 						</div>
-						
+
 						<div class="product-detail-btn-cake">
 							<!-- 구매하기 버튼 get 방식으로 url 보내기 -->
 							<a href="../order/detail.jsp?productNo=<%=productNo%>"
@@ -77,14 +81,25 @@
 					<!-- review start -->
 					<%@ include file="../review/list.jsp"%>
 					<!-- review end -->
-
 					<div class="col-12 list-box">
+			         <hr />
+					</div>
+					<div class="col-12 list-box text-center" style="margin-top: 20px;">
 						<a href="list.jsp?category=<%=product.getCategory()%>"
-							class="btn btn-outline-primary btn-lg">목록</a>
-					<%if("0".equals(session.getAttribute("LOGINED_ADMIN"))){ %>
-                        <a href="productform.jsp?productNo=<%=productNo %>" class="btn btn-primary btn-lg">상품 수정</a>
-                        <a href="deleteProduct.jsp?productNo=<%=productNo %>" class="btn btn-danger btn-lg">상품 삭제</a>
-                <%} %>
+							class="btn btn-outline-primary btn-lg">목록으로</a>
+							
+							 <a
+							href="/semi-project/review/reviewform.jsp?productNo=<%=productNo %>"
+							class="btn btn-primary btn-lg">리뷰남기기</a>
+							
+					</div>			
+					<div class="col-12 list-box">
+						<%if("0".equals(session.getAttribute("LOGINED_ADMIN"))){ %>
+						<a href="productform.jsp?productNo=<%=productNo %>"
+							class="btn btn-primary btn-lg">상품 수정</a> <a
+							href="deleteProduct.jsp?productNo=<%=productNo %>"
+							class="btn btn-danger btn-lg">상품 삭제</a>
+						<%} %>
 					</div>
 				</div>
 			</div>

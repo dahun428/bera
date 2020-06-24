@@ -1,0 +1,135 @@
+<%@page import="com.br.vo.Pagenation"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@page import="com.br.vo.Product"%>
+<%@page import="java.util.List"%>
+<%@page import="com.br.dao.ProductDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="/semi-project/js/product.js"></script>
+</head>
+<style>
+</style>
+<%
+        	//pagenate
+			ProductDao productDao = new ProductDao();
+			String cat = request.getParameter("category");
+        	int startRow = 1;
+        	int endRow = 8;
+        	int perPage = 8;
+        	int currentPage = NumberUtil.stringToInt(request.getParameter("page"));
+    		int totalRows = productDao.getProductCountByCategory(cat);
+    		int totalPages =(int) Math.ceil(totalRows/perPage);
+    		
+        	Pagenation pagenation = new Pagenation(perPage,5,currentPage,totalRows);
+	        
+			List<Product> products = productDao.getProductsByCategory(cat);
+			List<Product> rankedProducts = productDao.getProductForRank(cat);
+		%>
+
+<body onload="initPage(event,<%=totalRows%>,'<%=cat%>')">
+    <div class="wrapper">
+        <div class="header">
+            <%@ include file="/common/header.jsp"%>
+        </div>
+        <div class="navi">
+            <%
+				String position = "menu";
+			%>
+            <%@ include file="/common/navi.jsp"%>
+        </div>
+
+        <div class="body">
+            <div class="list-banner">
+                <!-- 카테고리에 따라서 배너 이미지 바꾸기 -->
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <img src="../image/<%="ICECREAM".equals(cat) ? "list-banner-img-cream.jpg" : "list-banner-img-cake.jpg"%>" alt="" />
+                    </div>
+                </div>
+                <!-- banner end -->
+            </div>
+            <div class="container">
+
+                <div class="row">
+                    <%
+						if ("ICECREAM".equals(cat)) {
+					%>
+                    <!-- monthly best item -->
+                    <div class="col-12">
+                        <!-- 카테고리가 ice cream 일경우에만 best item 뜨게 만들기 -->
+                        <h4 class="display-4 text-center">BEST ITEM</h4>
+                        <hr />
+                        <div class="row">
+                            <%
+								Product product;
+									for (int i = 1; i <= rankedProducts.size(); i++) {
+										product = rankedProducts.get(i-1);
+							%>
+
+                            <div class="col-2 text-center">
+                                <span class="badge badge-pill badge-info"><%=i%>위</span>
+                                <!-- product-detail-page-move -->
+                                <a href="detail.jsp?productNo=<%=product.getNo()%>">
+                                    <!-- product-detail-page-move --> <img class="img-thumbnail" src="../image/<%=cat %>/<%=product.getImagePath()%>" alt="" />
+                                </a>
+                                <div class="title text-center">
+                                    <p>
+                                        <!-- product-detail-page-move -->
+                                        <a href="detail.jsp?productNo=<%=product.getNo()%>"><%=product.getName()%></a>
+                                        <!-- product-detail-page-move -->
+                                    </p>
+                                </div>
+                            </div>
+                            <%
+								}
+							%>
+                        </div>
+                    </div>
+                    <%
+						}
+					%>
+                    <!-- monthly best item -->
+                    <div class="col-12 br-event-container">
+                        <!-- category name -->
+                        <h4 class="display-4 text-center"><%="ICECREAM".equals(cat) ? "ICE CREAM" : " ICE CREAM CAKE"%></h4>
+                        <!-- category name end -->
+                        <hr />
+                        <!-- product list -->
+                        <div class="row custom-content-box" id="product-list">
+                            <!-- product -->
+
+                            <!-- product -->
+
+                        </div>
+                        <ul class="pagination justify-content-center" id="pageBar" style="margin: 20px 0">
+                        </ul>
+                        <!-- product list -->
+                    </div>
+                </div>
+                <%
+					if ("0".equals(session.getAttribute("LOGINED_ADMIN"))) {
+				%>
+                <div class="row">
+                    <div class="col-1-sm">
+                        <a href="productform.jsp?category=<%=cat%>" class="btn btn-primary">상품 등록</a>
+                    </div>
+                </div>
+                <%
+					}
+				%>
+            </div>
+        </div>
+        <div class="footer">
+            <%@ include file="/common/footer.jsp"%>
+        </div>
+    </div>
+    
+</body>
+
+</html>
