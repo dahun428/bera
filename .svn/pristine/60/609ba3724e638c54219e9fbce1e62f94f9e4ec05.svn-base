@@ -1,0 +1,176 @@
+event.getBannerEventAll=select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+												    a.onlybanner, b.image_path, b.image_type, \
+												    row_number() over (order by a.event_no desc) rn \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+					                         and a.onlybanner = 0 \
+					                         and b.image_type = 2 \
+					                         and a.ended = 1  
+event.getBannerEventAllCount=select count(*) as cnt from br_events where onlybanner = 0 and ended = 1    					                        
+event.updateEventDto=update br_events \
+						    set title = ?, \
+						        content = ?, \
+						        start_date = ?, \
+						        end_date = ?, \
+						        ended = ?, \
+						        onlybanner = ? \
+						    where event_no = ? 
+event.insertEventImagePath=insert into br_events_image_path (event_no, image_path, image_type) \
+													 values (?, ?, ?)  
+event.insertGetNo=select seq_event_no.currval as event_no from dual 
+event.insertEvent=insert into br_events (event_no, title, content, start_date, end_date, onlybanner) \
+                values (seq_event_no.nextval, ?, ?, ?, ?, ?) 
+event.getEventListByNo=select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+						  a.onlybanner, b.image_path, b.image_type \
+					from br_events a, br_events_image_path b \
+					where a.event_no = b.event_no \
+					and a.event_no = ? \
+					order by a.event_no desc 
+event.updateEventImage=update br_events_image_path \
+						    set image_path = ? \
+    						where image_type = ? \
+						    and event_no = ? 
+event.updateEvent=update br_events \
+				    set title = ?, \
+				        content = ?, \
+				        start_date = ?, \
+				        end_date = ?, \
+				        ended = ? \
+				    where event_no = ? 	
+event.deleteEventByNo=delete from br_events where event_no = ? 				    		    					    					  								 
+!-- event-manager progress event thumbnail for pagenation count --!
+event.getProgressEventListThumbnailTypeCount=select count (*) cnt \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+											 and a.onlybanner = 1 \
+											 and a.ended = 1 \
+											 and b.image_type = 1 
+
+
+!-- event-manager progress event thumbnail for pagenation --!
+event.getProgressEventListThumbnailType=select event_no, title, content, start_date, end_date, ended, \
+											   onlybanner, image_path, image_type, rn \
+										from(select a.event_no, a.title, a.content, a.start_date, a.end_date, \
+													a.ended, a.onlybanner, b.image_path, b.image_type, \
+													row_number() over (order by a.event_no desc) rn \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+					                         and a.onlybanner = 1 \
+					                         and a.ended = 1 \
+					                         and b.image_type = 1) \
+					                    where rn >= ? and rn <= ?
+!--event-manager progress event banner for pagenation cnt --!
+event.getProgressEventListBannerTypeCount=select count (*) cnt \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+											 and a.onlybanner = 0 \
+											 and a.ended = 1 \
+											 and b.image_type = 2  
+!--event-manager progress event banner for pagenation --!
+event.getProgressEventListBannerType=select event_no, title, content, start_date, end_date, ended, \
+											   onlybanner, image_path, image_type, rn \
+										from(select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+												    a.onlybanner, b.image_path, b.image_type, \
+												    row_number() over (order by a.event_no desc) rn \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+					                         and a.onlybanner = 0 \
+					                         and b.image_type = 2 \
+					                         and a.ended = 1) \
+					                    where rn >= ? and rn <= ? 
+!--event-manager ended event thumbnail for pagenation cnt --!					                     
+event.getEndedEventListThumbnailTypeTotalRows=select count (*) cnt \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+											 and a.onlybanner = 1 \
+											 and a.ended = 0 \
+											 and b.image_type = 1  
+!--event-manager ended event thumbnail for pagenation --!											 
+event.getEndedEventListThumbnailType=select event_no, title, content, start_date, end_date, ended, \
+											   onlybanner, image_path, image_type, rn \
+										from(select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+												    a.onlybanner, b.image_path, b.image_type, \
+												    row_number() over (order by a.event_no desc) rn \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+					                         and a.onlybanner = 1 \
+					                         and b.image_type = 1 \
+					                         and a.ended = 0) \
+					                    where rn >= ? and rn <= ? 
+!--event-manager ended event banner for pagenation cnt --!					                     
+event.getEndedEventListBannerTypeTotalRows=select count (*) cnt \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+											 and a.onlybanner = 0 \
+											 and a.ended = 0 \
+											 and b.image_type = 2  
+!--event-manager ended event banner for pagenation --!
+event.getEndedEventListBannerType=select event_no, title, content, start_date, end_date, ended, \
+											   onlybanner, image_path, image_type, rn \
+										from(select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+												    a.onlybanner, b.image_path, b.image_type, \
+												    row_number() over (order by a.event_no desc) rn \
+											 from br_events a, br_events_image_path b \
+											 where a.event_no = b.event_no (+) \
+					                         and a.onlybanner = 0 \
+					                         and b.image_type = 2 \
+					                         and a.ended = 0) \
+					                    where rn >= ? and rn <= ? 
+					                    
+event.getEventByNo=select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+								 a.onlybanner, b.image_path, b.image_type \
+						  from br_events a, br_events_image_path b \
+						  where a.event_no = b.event_no \
+						  and a.ended = 1 \
+						  and a.onlybanner = 1 \
+						  and a.event_no = ? 
+						  
+event.getEventContentByNo=select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+								 a.onlybanner, b.image_path, b.image_type \
+						  from br_events a, br_events_image_path b \
+						  where a.event_no = b.event_no \
+						  and b.image_type = 0 \
+						  and a.event_no = ? 	
+event.getEventThumbnailByNo=select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+								 a.onlybanner, b.image_path, b.image_type \
+						  from br_events a, br_events_image_path b \
+						  where a.event_no = b.event_no \
+						  and b.image_type = 1 \
+						  and a.event_no = ? 
+						  
+event.getEventBannerByNo=select a.event_no, a.title, a.content, a.start_date, a.end_date, a.ended, \
+								 a.onlybanner, b.image_path, b.image_type \
+						  from br_events a, br_events_image_path b \
+						  where a.event_no = b.event_no \
+						  and b.image_type = 2 \
+						  and a.event_no = ? 			  								 
+
+event.getRankingProducts=select product_no, name, image_path, rn from( \
+								    select product_no,name,image_path, row_number() over (order by product_no desc) rn \
+								    from( \
+								        select a.product_no,a.name,a.image_path, b.ord_amount \
+								        from (select a.product_no, a.name, b.image_path \
+								            from br_products a \
+								            join br_product_image_path b on b.product_no = a.product_no \
+								            where a.category = 'ICECREAM' ) a \
+								        join (select product_no, sum(order_product_amount) as ord_amount \
+								            from br_order_sub \
+								            group by product_no) b on b.product_no = a.product_no \
+								        order by ord_amount desc \
+								        ) \
+								    where rownum <= 6) \
+								where rn >= ? and rn <= ?
+event.getRankinProductsCount= select count(*) cnt \
+								    from( \
+								        select a.product_no,a.name,a.image_path, b.ord_amount \
+								        from (select a.product_no, a.name, b.image_path \
+								            from br_products a \
+								            join br_product_image_path b on b.product_no = a.product_no \
+								            where a.category = 'ICECREAM' ) a \
+								        join (select product_no, sum(order_product_amount) as ord_amount \
+								            from br_order_sub \
+								            group by product_no) b on b.product_no = a.product_no \
+								        order by ord_amount desc \
+								        ) \
+								    where rownum <= 6 
+								    						 

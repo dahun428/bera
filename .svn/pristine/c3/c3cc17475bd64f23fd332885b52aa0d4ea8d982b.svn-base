@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="manager-nav">
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item" role="presentation"><a
+			class="nav-link active" id="cat1-tab" data-toggle="tab" href="#cat1"
+			role="tab" aria-controls="cat1" aria-selected="true">매출관리</a></li>
+		<li class="nav-item" role="presentation"><a class="nav-link"
+			id="cat2-tab" data-toggle="tab" href="#cat2" role="tab"
+			aria-controls="cat2" aria-selected="true">상품관리</a></li>
+		<li class="nav-item" role="presentation"><a class="nav-link"
+			id="cat3-tab" data-toggle="tab" href="#cat3" role="tab"
+			aria-controls="cat3" aria-selected="true">이벤트관리</a></li>
+		<li class="nav-item" role="presentation"><a class="nav-link"
+			id="cat4-tab" data-toggle="tab" href="#cat4" role="tab"
+			aria-controls="cat4" aria-selected="true">공지관리</a></li>
+	</ul>
+</div>

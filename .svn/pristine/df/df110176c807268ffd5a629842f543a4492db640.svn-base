@@ -1,0 +1,263 @@
+<%@page import="com.br.dao.ProductDao"%>
+<%@page import="com.br.vo.Product"%>
+<%@page import="com.br.utils.StringUtil"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	.error {
+		color: red;
+		font-weight: bold;
+		font-style: italic;
+	}
+	.field-error {
+		border: 1px solid red;
+	}
+</style>
+
+<body onload="adminCheck(<%="1".equals(session.getAttribute("LOGINED_ADMIN"))%>)">
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+			<%
+				int productNo = NumberUtil.stringToInt(StringUtil.nullToValue(request.getParameter("productNo"), ""),-1);
+			
+				boolean isModify =productNo > 0;
+				Product product = new Product();
+				ProductDao productDao = new ProductDao();
+				String tagValue = "";
+				if(isModify){
+					product = productDao.getProductByProductNo(productNo);
+				for(String tag : product.getTags()){
+					tagValue += " "+tag.substring(1);
+					}
+					tagValue = tagValue.substring(1).replaceAll(" ", ",");
+				}
+
+				
+				String category = request.getParameter("category");
+				String position = "menu";
+			%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-6">
+
+						<h6></h6>
+						<div class="card">
+							<div class="card-header"><%=isModify? "상품수정":"상품추가" %></div>
+							<div class="card-body">
+								<form action="productRegister.jsp" enctype="multipart/form-data"
+									method="post" onsubmit="inputcheck(event)"> 
+									
+									<%if(isModify){ %>
+									<input type="hidden" name="productNo" value="<%=productNo %>" >
+									<input type="hidden" name="imagePath" value="<%=product.getImagePath() %>" >
+									<input type="hidden" name="category" value="<%=product.getCategory()%>" >
+									<%}else{ %>
+									<input type="hidden" name="category" value="<%=product.getCategory()%>" >
+									<%} %>
+									<div class="form-group" id="name-input">
+										<label for="product-name">상품명</label> <input type="text"
+											name="name" id="product-name" class="form-control" value="<%=isModify? product.getName():""%>">
+									</div>
+									<div class="form-group" id="price-input">
+										<label for="product-price">상품가격</label> <input type="number"
+											name="price" id="product-price" class="form-control" value="<%=isModify?product.getPrice():"" %>">
+									</div>
+									<div class="form-group" id="discount-input">
+										<label for="product-discount-price">상품 할인가</label> <input
+											type="number" name="discountPrice" id="product-discount-price"
+											class="form-control" value=<%=isModify?product.getDiscountPrice() : ""%>>
+									</div>
+									<div class="form-group" id="point-input">
+										<label for="product-point">상품 포인트</label> <input type="number" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+											name="point" id="product-point" class="form-control" value="<%=isModify?product.getPoint():""%>">
+									</div>
+									<div class="form-group" id="amount-input">
+										<label for="product-amount">입고</label> <input type="number" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+											name="point" id="product-amount" class="form-control" value="<%=isModify?product.getAmount():"" %>">
+									</div>
+									<div class="form-group" id="tag-input">
+										<label for="product-tag">태그 <small
+											style="color: crimson">*태그가 여러개인 경우에는 ,로 구분해주세요</small></label> <input
+											type="text" name="tag" class="form-control" id="product-tag" value="<%=isModify? tagValue : ""%>">
+									</div>
+									<div class="form-group" id="explain-input">
+										<label for="product-explain">상품 설명</label>
+										<textarea name="explain" id="product-explain" cols="30"
+											rows="10" class="form-control"> <%=isModify?product.getExplain():""%></textarea>
+									</div>
+									<div class="form-group" id="image-input">
+										<label for="">상품 이미지</label> <input type="file" name="image"
+											id="product-image" class="form-control" value="<%=isModify? product.getImagePath():""%>" onchange="fileCheck(this)">
+									</div>
+									<div class="text-center">
+										<a href="<%=isModify?"detail.jsp?productNo="+productNo:"list.jsp?category="+category%>" class="btn btn-secondary">돌아가기</a>
+										<button type="submit" class="btn btn-primary"><%=isModify?"상품 수정" : "상품 등록"%>
+										 <!-- onclick="inputcheck(event)" -->
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="footer">
+			<%@ include file="/common/footer.jsp"%>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function adminCheck(isNotAdmin){
+			if(isNotAdmin){
+				
+			}	
+		}
+		function fileCheck(f){
+			var file = f.files
+			if(!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)){
+				alert('이미지 파일만 등록 할 수 있습니다.')
+				f.outerHTML = f.outerHTML
+			}else{
+				return
+			}
+		}
+		function inputcheck(event) {
+			clearErrorField()
+			var isPassed = true
+			var nameField = document.querySelector("#product-name")
+			var priceField = document.querySelector("#product-price")
+			var discountPriceField = document
+					.querySelector("#product-discount-price")
+			var pointField = document.querySelector("#product-point")
+			var tagField = document.querySelector("#product-tag")
+			var amountField = document.querySelector("#product-amount")
+			var imageField = document.querySelector("#product-image")
+			var explainField = document.querySelector("#product-explain")
+			
+
+			if (!nameField.value) {
+				nameField.classList
+						.add("is-invalid")
+				isPassed = false
+			}
+			if (!priceField.value) {
+				priceField.classList
+						.add("is-invalid")
+				isPassed = false
+			}else{
+                isPassed = digitCheck(priceField)
+            }
+            
+			if (!discountPriceField.value) {
+				discountPriceField.classList
+						.add("is-invalid")
+				isPassed = false
+			}else{
+                isPassed = digitCheck(discountPriceField)
+            }
+			if (!pointField.value) {
+				pointField.classList
+						.add("is-invalid")
+				isPassed = false
+			}else{
+                isPassed = digitCheck(pointField)
+            }
+			if (!tagField.value) {
+				tagField.classList
+						.add("is-invalid")
+				isPassed = false
+			}
+			if (!amountField.value) {
+				amountField.classList
+						.add("is-invalid")
+				isPassed = false
+			}else{
+                isPassed = digitCheck(amountField)
+            }
+            
+			if (!imageField.value) {
+				imageField.classList
+						.add("is-invalid")
+				isPassed = false
+			}
+			if (!explainField.value) {
+				explainField.classList
+						.add("is-invalid")
+				isPassed = false
+			}
+            
+
+			if (!isPassed) {
+                alert('입력란을 모두 작성해야합니다.')
+				event.preventDefault()
+			}
+		}
+        function digitCheck(inNode){
+            if(inNode.value.length > 9){
+                alert('입력된 숫자가 너무 큽니다.')
+                inNode.classList
+						.add("is-invalid")
+                inNode.value = 0
+                return false
+            }
+            return true
+        }
+
+		function clearErrorField() {
+			document.querySelectorAll(".form-group").forEach(function(curr) {
+				curr.classList.remove('is-invalid')
+			})
+		}
+	</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

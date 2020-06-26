@@ -1,0 +1,82 @@
+<%@page import="com.br.dao.ProductDao"%>
+<%@page import="com.br.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.UUID"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="java.util.List"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="com.br.utils.FileUtil"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@page import="com.br.utils.BRStatics"%>
+<%@page import="java.io.File"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.Paths"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = "";
+	if (request.getHeader("User-Agent").indexOf("Windows") > 0) {
+		//윈도우인 경우
+		path = BRStatics.ROOT_PATH;
+	} else if (request.getHeader("User-Agent").indexOf("Mac") > 0) {
+		path = BRStatics.ROOT_PATH_FOR_MAC;
+		//맥인 경우
+	}
+	//다시만들어
+	DiskFileItemFactory factory = new DiskFileItemFactory();
+	ServletFileUpload upload = new ServletFileUpload(factory);
+	upload.setHeaderEncoding("utf-8");
+	
+	List<FileItem> items = upload.parseRequest(request);
+	Map<String, String> paramMap = new HashMap<String,String>();
+	FileItem item = null;
+	for(FileItem fi : items){
+		if(fi.isFormField()){
+		String fieldName = fi.getFieldName();
+		String value = new String((fi.getString().getBytes("8859_1")),"utf-8");
+		paramMap.put(fieldName, value);
+		}else{
+			item = fi;
+		}
+	}
+	Product oldProduct = new Product();
+	ProductDao dao = new ProductDao();
+	int no = NumberUtil.stringToInt(paramMap.get("productNo"),0);
+	if(no != 0){
+		oldProduct = dao.getProductByProductNo(no);
+	}
+	String name = paramMap.get("name");
+	String category = paramMap.get("category");
+	int price = NumberUtil.stringToInt(paramMap.get("price"));
+	int point = NumberUtil.stringToInt(paramMap.get("amount"));
+	int amount = NumberUtil.stringToInt(paramMap.get("point"));
+	int discountPrice = NumberUtil.stringToInt(paramMap.get("discountPrice"));
+	String tagVal = paramMap.get("tag");
+	String explain = paramMap.get("explain");
+	
+	System.out.println("item name = " + item.getName()+ ", pno = " + no);
+	Product product = new Product();
+	product.setNo(no==0?no:oldProduct.getNo());
+	product.setName(name.isEmpty()?oldProduct.getName():name);
+	product.setPrice(price!=0?price:oldProduct.getPrice());
+	product.setPoint(point!=0?point:oldProduct.getPoint());
+	product.setDiscountPrice(discountPrice!=0?discountPrice:oldProduct.getDiscountPrice());
+	product.setAmount(amount!=0?amount:oldProduct.getAmount());
+	product.setCategory(category.isEmpty()?oldProduct.getCategory():category);
+	product.setExplain(explain.isEmpty()?oldProduct.getExplain():explain);
+	String filename = null;
+	if(!item.getName().isEmpty()){
+		FileUtil.fileDeleteExecute(product.getImagePath(), path+"/"+category);
+		filename = UUID.randomUUID().toString()+"-" + new File(item.getName()).getName();
+	item.write(new File(path+("ICECREAM".equals(category)? "ICECREAM/":"CAKE/")+filename));
+	System.out.println(path+("ICECREAM".equals(category)? "ICECREAM/":"CAKE/")+filename);
+	}
+	product.setImagePath(filename!=null?filename:oldProduct.getImagePath());
+	dao.mergeProduct(product, tagVal);
+	System.out.println(product);
+	response.sendRedirect("modifyComplete.jsp?productNo="+no+"category="+category);
+
+%>

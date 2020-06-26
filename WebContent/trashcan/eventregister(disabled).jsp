@@ -1,0 +1,91 @@
+<%@page import="com.br.utils.StringUtil"%>
+<%@page import="com.br.service.EventService"%>
+<%@page import="com.br.dto.EventDto"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.br.utils.FileUtil"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.br.utils.BRStatics"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+
+
+
+String userAgent = request.getHeader("User-Agent");
+String path = "";
+
+//저장할 위치
+if(userAgent.indexOf("Windows")>0){
+	//윈도우인 경우
+	path = BRStatics.ROOT_PATH;
+} else if(userAgent.indexOf("Mac")>0){
+	//맥인 경우
+	path = BRStatics.ROOT_PATH_FOR_MAC;
+}
+
+String directory = path + "/EVENT";
+
+//파일 유틸에서 업로드 기능 실행
+Map<String, String> fileMap = FileUtil.MultifileUploadExecute(request, directory);
+
+String thumbnailImagePath = fileMap.get("fileRealNamethumbnail");
+String contentImagePath = fileMap.get("fileRealNamecontent");
+String bannerImagePath = fileMap.get("fileRealNamebanner");
+
+//맵으로 변환된 파일 이름, 파라미터 이름
+//getparameter 대신 fileMap 에 있는 값을 가져온다.
+String title = fileMap.get("title");
+String content = fileMap.get("content");
+String eventDay = fileMap.get("eventday");
+
+SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+Date startDate = df.parse("20190101");
+Date endDate = df.parse("20990101");
+
+if(!"everyday".equals(eventDay)){
+	
+	// 월, 일에 0 붙이기
+	String startYear = fileMap.get("startYear");
+	String startMonth = String.format("%02d",NumberUtil.stringToInt(fileMap.get("startMonth")));
+	String startDay = String.format("%02d",NumberUtil.stringToInt(fileMap.get("startDay")));
+	String endYear = fileMap.get("endYear");
+	String endMonth = String.format("%02d",NumberUtil.stringToInt(fileMap.get("endMonth")));
+	String endDay = String.format("%02d",NumberUtil.stringToInt(fileMap.get("endDay")));
+	//string to Date 
+	StringBuffer startDateBuffer = new StringBuffer();
+	String startDateStr = startDateBuffer.append(startYear).append(startMonth).append(startDay).toString();
+	startDate = df.parse(startDateStr);
+	
+	StringBuffer endDateBuffer = new StringBuffer();
+	String endDateStr = endDateBuffer.append(endYear).append(endMonth).append(endDay).toString();
+	endDate = df.parse(endDateStr);
+}
+
+//객체에 넣기
+//imagePath 값은 service 에서 다시 재정의 하여 넣는다.
+EventDto event = new EventDto();
+event.setTitle(title);
+event.setContent(StringUtil.nullToValue((content.isEmpty() ? null : content), " "));
+event.setStartDate(startDate);
+event.setEndDate(endDate);
+event.setContentImagePath(contentImagePath);
+event.setThumbnailImagePath(thumbnailImagePath);
+event.setBannerImagePath(bannerImagePath);
+boolean isBanner = false;
+if(thumbnailImagePath != null || contentImagePath != null){
+	isBanner = true;
+}
+event.setBanner(isBanner);
+//DB에넣기
+EventService eventService = new EventService();
+eventService.insertEvent(event);
+
+response.sendRedirect("eventmanager.jsp");
+
+
+
+
+%>

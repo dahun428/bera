@@ -1,0 +1,96 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="com.br.utils.NumberUtil"%>
+<%@page import="com.br.dao.AdminDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<%@ include file="/common/header.jsp"%>
+		</div>
+		<div class="navi">
+			<%
+				String position = "ADMIN";
+			%>
+			<%@ include file="/common/navi.jsp"%>
+		</div>
+		<div class="body">
+			<div class="container">
+				<div class="row mt-4">
+					<div class="col-12">
+						<div class="row mt-4">
+							<div class="col-3">
+								<h2 class="font-weight-bold">관리자페이지</h2>
+							</div>
+							<div class="col-9">
+								<ul class="nav nav-tabs" role="tablist">
+									<li class="nav-item" role="presentation"><a
+										class="nav-link active" id="cat1-tab" data-toggle="tab"
+										href="#cat1" role="tab" aria-controls="cat1"
+										aria-selected="true">매출관리</a></li>
+									<li class="nav-item" role="presentation"><a
+										class="nav-link" id="cat2-tab" data-toggle="tab" href="#cat2"
+										role="tab" aria-controls="cat2" aria-selected="true">상품관리</a></li>
+									<li class="nav-item" role="presentation"><a
+										class="nav-link" id="cat3-tab" data-toggle="tab" href="#cat3"
+										role="tab" aria-controls="cat3" aria-selected="true">이벤트관리</a></li>
+									<li class="nav-item" role="presentation"><a
+										class="nav-link" id="cat4-tab" data-toggle="tab" href="#cat4"
+										role="tab" aria-controls="cat4" aria-selected="true">공지관리</a></li>
+								</ul>
+							</div>
+						</div>
+					<div class="tab-content">
+						<div style="background-color: black; height: 2px;" class="mb-2"></div>
+						<!-- content -->
+						<div class="tab-pane fade show active" id="cat1" role="tabpanel" aria-labelledby="cat1-tab">
+							<div class="row mt-3">
+								<div class="col-12">
+								<!-- 매출현황 -->
+									<%@ include file="salesmanager.jsp" %>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="cat2" role="tabpanel" aria-labelledby="cat2-tab">
+							<div class="row mt-3">
+								<div class="col-12">
+								<!-- product -->
+									<%@ include file="productmanager.jsp" %>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="cat3" role="tabpanel" aria-labelledby="cat3-tab">
+							<div class="row mt-3">
+								<div class="col-12">
+								<!-- event -->
+								<%@ include file="eventmanager.jsp" %>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="cat4" role="tabpanel" aria-labelledby="cat4-tab">
+							<div class="row mt-3">
+								<div class="col-12">
+								<!-- notice -->
+								<%@ include file="noticemanager.jsp" %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="footer">
+				<%@ include file="/common/footer.jsp"%>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -47,7 +47,7 @@
 	int no = noticeService.insertNotice(notice, imgPath);
 	
 	
-	response.sendRedirect("detail.jsp?no="+no);
+	response.sendRedirect("../manage/noticemanager-detail.jsp?no="+no);
 
 
 
